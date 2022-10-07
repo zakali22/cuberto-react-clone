@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom/client';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
 
-/** Components */
-import {Landing} from "./pages/index"
+/** Components + Pages */
+import {Landing} from "@pages/index"
+import {Layout} from "@components/index"
 
 const App = () => {
   return (
-    <Router>
+    <Layout>
       <Routes>
         <Route path='/' element={<Landing />}/>
       </Routes>
-    </Router>
+    </Layout>
   )
 }
 
@@ -20,7 +21,9 @@ const App = () => {
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>
 );
 
