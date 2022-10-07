@@ -10,10 +10,13 @@
     "@types/node": "^18.8.3",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "classnames": "^2.3.2",
+    "gsap": "^3.11.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "sass": "^1.55.0",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
