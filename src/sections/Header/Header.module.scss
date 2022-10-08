@@ -1,0 +1,50 @@
+@use "../../shared.scss";
+
+.header {
+    height: 100vh;
+    &-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // padding-top: 90px;
+        height: 100%;
+    }
+
+    &-title {
+        h1 {
+            font-size: 19px;
+            font-weight: 400;
+        }
+    }
+
+    /** Items **/
+    &-items {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        margin-left: -20px;
+    }
+
+    &-item {
+        
+        a {
+            // color: shared.$black;
+            padding: 10px 20px;
+            font-size: 80px;
+            line-height: 1;
+            white-space: nowrap;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; // Add layers
+            text-decoration: none;
+
+            @supports(-webkit-text-stroke: 1.2px #000){
+                text-shadow: none;
+                -webkit-text-fill-color: white;
+                -webkit-text-stroke: 1.2px black;
+            }
+
+            span {
+                
+            }
+        }
+    }
+}
