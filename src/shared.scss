@@ -1,5 +1,33 @@
-/** Colors **/
-$black: #000;
+/** CSS Variables **/
+:root {
+    --black: #000;
+    --button-border-radius: 50%;
+    --button-bg: transparent;
+    --button-stroke: #ce1352;
+    --button-stroke-width: 1px;
+    --button-text: #ffffff;
+    --button-bg-hover: transparent;
+    --button-stroke-hover: #ce1352;
+    --button-stroke-width-hover: 1px;
+    --button-text-hover: #ffffff;
+    --cursor-stroke: #fff;
+    --cursor-fill: #fff;
+    --cursor-stroke-width: 1px;
+    --color-text: #ffffff;
+    --color-bg: #312b35;
+    --color-link: #89639e;
+    --color-link-hover: #ce1352;
+    --button-filler: #ce1352;
+}
+
+/** Mixins **/
+@mixin buttonHover {
+    outline: none;
+	border-width: var(--button-stroke-width-hover);
+	border-color: var(--button-stroke-hover);
+	color: var(--button-text-hover);
+	background: var(--button-bg-hover);
+}
 
 /** Sizes **/
 
@@ -56,15 +84,18 @@ p {
 }
 
 a {
-    color: $black;
+    color: var(--black);
     font-size: 20px;
     text-decoration: none;
 }
 
 button {
-    color: $black;
+    color: var(--black);
     font-size: 20px;
 
+    &.button--hover {
+        @include buttonHover()
+    }
 }
 
 

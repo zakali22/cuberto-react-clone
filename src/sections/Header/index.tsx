@@ -1,9 +1,12 @@
 import styles from "./Header.module.scss"
 import classnames from "classnames"
 import { HeaderItem } from "./HeaderItem"
+import { MagneticButton } from "@components/MagneticButton"
 
 export const Header = () => {
     return (
+        <>
+        <MagneticButton />
         <header className={styles["header"]}>
             <div className={classnames(styles["header-content"], styles["container"])}>
                 <div className={styles["header-title"]}>
@@ -16,5 +19,6 @@ export const Header = () => {
                 </div>
             </div>
         </header>
+        </>
     )
 }
