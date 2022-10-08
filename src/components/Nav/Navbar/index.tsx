@@ -14,7 +14,18 @@ export const Navbar = () => {
                 </div>
 
                 <div className={styles['navbar-right']}>
-
+                    <Link to="">
+                        our showreel
+                    </Link>
+                    <div className={styles['navbar-toggle']}>
+                        <button>
+                            <span>menu</span>
+                            <span className={styles["navbar-menu-box"]}>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>

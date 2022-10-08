@@ -26,7 +26,8 @@ $black: #000;
 body {
     margin: 0;
     font-family: "Averta CY", sans-serif;
-    font-weight: 600;
+    font-weight: 400;
+
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {}
@@ -52,7 +53,22 @@ h4, .h4 {
 p {
     font-size: 20px;
     line-height: 1.2;
-    font-weight: 400;
+}
+
+a {
+    color: $black;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+button {
+    color: $black;
+    font-size: 20px;
+
 }
 
 
+/** Common styles **/
+.container {
+    padding: 0 150px;
+}
