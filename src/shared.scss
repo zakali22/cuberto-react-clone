@@ -1,0 +1,58 @@
+/** Colors **/
+$black: #000;
+
+/** Sizes **/
+
+/** Font face **/
+@font-face {
+    font-family: "Averta CY";
+    src: url("./fonts/AvertaCY-Light.woff2") format('woff2');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Averta CY";
+    src: url("./fonts/AvertaCY-Regular.woff2") format('woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Averta CY";
+    src: url("./fonts/AvertaCY-Semibold.woff2") format('woff2');
+    font-weight: 600;
+}
+
+/** Base styles **/
+body {
+    margin: 0;
+    font-family: "Averta CY", sans-serif;
+    font-weight: 600;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {}
+
+h1, .h1 {
+    font-size: 90px;
+    line-height: 1;
+}
+
+h2, .h2 {
+    font-size: 70px;
+    line-height: 1;
+}
+
+h3, .h3 {
+
+}
+
+h4, .h4 {
+
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 400;
+}
+
+
