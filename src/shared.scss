@@ -71,4 +71,8 @@ button {
 /** Common styles **/
 .container {
     padding: 0 150px;
+
+    @media(min-width: 1400px){
+        padding: 0 220px;
+    }
 }
