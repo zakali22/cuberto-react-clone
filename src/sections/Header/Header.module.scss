@@ -8,9 +8,11 @@
         justify-content: center;
         // padding-top: 90px;
         height: 100%;
+        position: relative;
     }
 
     &-title {
+        z-index: 2;
         h1 {
             font-size: 19px;
             font-weight: 400;
@@ -25,9 +27,24 @@
         width: 100%;
         margin-left: -20px;
     }
-
+    
     &-item {
+        position: relative;
         min-height: 166px;
+
+        .hover-area {
+            content: "";
+            display: block;
+            height: 100%;
+            width: 100%;
+            background: red;
+            position: absolute;
+            top: -30vh;
+            left: 0;
+            height: 69vh;
+            // z-index: -1;
+            cursor: pointer;
+        }
         
         a {
             // color: shared.$black;
@@ -37,6 +54,7 @@
             white-space: nowrap;
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; // Add layers
             text-decoration: none;
+            // z-index: 2;
 
             @media(min-width: 1400px){
                 font-size: 100px;

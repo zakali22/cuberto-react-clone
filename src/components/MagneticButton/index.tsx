@@ -42,7 +42,7 @@ export const MagneticButton = ({children, classname, type}: Props) => {
         // size/position
         setRect(DOM?.wrapperEl?.current?.getBoundingClientRect())
         // the movement will take place when the distance from the mouse to the center of the button is lower than this value
-        setDistanceToTrigger(rect?.width*0.6) // Radius around the button when movement starts
+        setDistanceToTrigger(rect?.width*0.8) // Radius around the button when movement starts
         // console.log("calculateSizePosition")
     }, [DOM?.el, rect?.width])
 

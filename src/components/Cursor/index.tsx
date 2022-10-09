@@ -24,18 +24,15 @@ export const Cursor = () => {
         DOM!.el!.current!.style!.opacity = 0;
         setBounds(DOM?.el?.current?.getBoundingClientRect())
         window.addEventListener('mousemove', onMouseMoveEv);
-
-        // Capture the dispatched enter/leave actions by MagneticButton
-        // eventBus.on('enter', enter)
-        // eventBus.on('leave', leave)
     }, [])
 
+    
     useEffect(() => { // Whenever the mouse pos changes recalculate everything
         onMouseMoveEv()
     }, [mousepos])
 
     function onMouseMoveEv(){
-        console.log("Moving mouse")
+        // console.log("Moving mouse")
         setRenderedStyles((prevState) => ({
             ...prevState, 
             tx: {
@@ -50,8 +47,10 @@ export const Cursor = () => {
             }
         }))
 
-        eventBus.on('enter', enter)
-        eventBus.on('leave', leave)
+        // eventBus.on('enter', enter)
+        // eventBus.on('leave', leave)
+        eventBus.on('headerHoverEnter', headerHoverEnter)
+        eventBus.on('headerHoverLeave', headerHoverLeave)
 
         gsap.to(DOM.el, {duration: 0.9, ease: 'Power3.easeOut'});
         requestAnimationFrame(() => render());
@@ -93,6 +92,27 @@ export const Cursor = () => {
             DOM.el.current.style.opacity = renderedStyles['opacity'].previous;
         }
         // requestAnimationFrame(() => render());
+    }
+
+    function headerHoverEnter(e: any){
+        // console.log("eventBus headerHoverEnter: ", e)
+        setRenderedStyles((prevState) => ({
+            ...prevState, 
+            scale: {
+                ...prevState.scale,
+                current: 9
+            }
+        }))
+    }
+
+    function headerHoverLeave(e: any){
+        setRenderedStyles((prevState) => ({
+            ...prevState, 
+            scale: {
+                ...prevState.scale,
+                current: 1
+            }
+        }))
     }
 
 
