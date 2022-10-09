@@ -108,6 +108,23 @@ button {
     }
 }
 
+.mask {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+
+    & > * {
+        display: block;
+        transform: translateY(100%);
+    }
+
+    &.slide-up {
+        & > * {
+            transform: translateY(0);
+        }
+    }
+}
+
 // Variations of buttons
 button.circular {
     &.button--hover {
