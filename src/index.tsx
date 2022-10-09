@@ -5,8 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import "./shared.scss"
 
 /** Components + Pages */
-import {Landing} from "@pages/index"
-import {Layout} from "@components/index"
+import {Landing} from "./pages/index"
+import {Layout} from "./components/index"
 
 const App = () => {
   return (

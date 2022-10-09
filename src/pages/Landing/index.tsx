@@ -1,5 +1,5 @@
 import React from "react"
-import {Header} from "@sections/Header"
+import {Header} from "../../sections/Header"
 
 export const Landing = () => {
     return (

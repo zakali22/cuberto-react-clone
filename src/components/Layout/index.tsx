@@ -1,6 +1,6 @@
 import React from "react"
-import {Navbar} from "@components/Nav"
-import {Cursor} from "@components/Cursor"
+import {Navbar} from "../Nav"
+import {Cursor} from "../Cursor"
 
 interface Props {
     children: React.ReactElement

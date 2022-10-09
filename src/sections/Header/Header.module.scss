@@ -27,6 +27,7 @@
     }
 
     &-item {
+        min-height: 166px;
         
         a {
             // color: shared.$black;
@@ -55,7 +56,7 @@
             }
 
             span {
-                
+                // transform: translateY(100%);
             }
         }
     }

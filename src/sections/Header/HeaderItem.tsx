@@ -12,8 +12,8 @@ export const HeaderItem = React.forwardRef<any, Props>((props: Props, ref) => { 
     return (
         <div className={styles["header-item"]}>
             <Link to={props.link}>
-                <span className="mask" ref={ref}>
-                    <span>{props.text}</span>
+                <span className="mask mask2">
+                    <span ref={ref}>{props.text}</span>
                 </span>
             </Link>
         </div>
