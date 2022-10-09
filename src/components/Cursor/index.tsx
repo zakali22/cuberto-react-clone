@@ -26,8 +26,8 @@ export const Cursor = () => {
         window.addEventListener('mousemove', onMouseMoveEv);
 
         // Capture the dispatched enter/leave actions by MagneticButton
-        eventBus.on('enter', enter)
-        eventBus.on('leave', leave)
+        // eventBus.on('enter', enter)
+        // eventBus.on('leave', leave)
     }, [])
 
     useEffect(() => { // Whenever the mouse pos changes recalculate everything
@@ -49,6 +49,9 @@ export const Cursor = () => {
                 current: mousepos.y - bounds?.height/2
             }
         }))
+
+        eventBus.on('enter', enter)
+        eventBus.on('leave', leave)
 
         gsap.to(DOM.el, {duration: 0.9, ease: 'Power3.easeOut'});
         requestAnimationFrame(() => render());
@@ -93,7 +96,7 @@ export const Cursor = () => {
     }
 
 
-    function enter(){
+    function enter(e: any){
         setRenderedStyles((prevState) => ({
             ...prevState, 
             scale: {
@@ -102,7 +105,7 @@ export const Cursor = () => {
             }, 
             opacity: {
                 ...prevState.opacity,
-                current: 0.2
+                current: 0
             }
         }))
     }

@@ -19,15 +19,7 @@ export const Navbar = () => {
                         our showreel
                     </Link>
                     <div className={styles['navbar-toggle']}>
-                        <MagneticButton>
-                            <>
-                                <span>menu</span>
-                                <span className={styles["navbar-menu-box"]}>
-                                    <span></span>
-                                    <span></span>
-                                </span>
-                            </>
-                        </MagneticButton>
+                        <MagneticButton type="circular" />
                     </div>
                 </div>
             </div>

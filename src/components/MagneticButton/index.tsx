@@ -4,13 +4,16 @@ import styles from "./MagneticButton.module.scss"
 import {gsap} from 'gsap'
 import { lerp, getMousePos, calcWinsize, distance, getRandomFloat } from '@lib/utils';
 import eventBus from "@lib/EventBus"
+import {CircularButton} from "./CircularButton"
 
 
 interface Props {
-    children?: React.ReactElement
+    children?: React.ReactElement,
+    classname?: string,
+    type?: string
 }
 
-export const MagneticButton: React.FC<Props> = ({children}) => {
+export const MagneticButton = ({children, classname, type}: Props) => {
     const [renderedStyles, setRenderedStyles] = useState({
         tx: {previous: 0, current: 0, amt: 0.1},
         ty: {previous: 0, current: 0, amt: 0.1},
@@ -25,6 +28,7 @@ export const MagneticButton: React.FC<Props> = ({children}) => {
     const [winsize, setWinSize] = useState<{}>()
 
     let DOM = {
+        wrapperEl: useRef<HTMLElement|any>(null),
         el: useRef<HTMLElement|any>(null),
         text: useRef<HTMLElement|any>(null),
         textInner: useRef<HTMLElement|any>(null),
@@ -36,9 +40,9 @@ export const MagneticButton: React.FC<Props> = ({children}) => {
 
     const calculateSizePosition = useCallback(() => {
         // size/position
-        setRect(DOM?.el?.current?.getBoundingClientRect())
+        setRect(DOM?.wrapperEl?.current?.getBoundingClientRect())
         // the movement will take place when the distance from the mouse to the center of the button is lower than this value
-        setDistanceToTrigger(rect?.width*1.5) // Radius around the button when movement starts
+        setDistanceToTrigger(rect?.width*0.6) // Radius around the button when movement starts
         // console.log("calculateSizePosition")
     }, [DOM?.el, rect?.width])
 
@@ -53,16 +57,23 @@ export const MagneticButton: React.FC<Props> = ({children}) => {
 
 
     const enter = useCallback(() => {
-        // Dispatch an enter event
-        eventBus.dispatch('enter')
         setHover(true)
 
         // console.log(DOM.el.current)
 
         DOM?.el?.current?.classList.add('button--hover');
         document.body.classList.add('active');
-        
-        renderedStyles['scale'].current = 1.3;
+
+        setRenderedStyles((prevState) => ({
+            ...prevState,
+            scale: {
+                ...prevState.scale,
+                current: 1.3
+            }
+        }))
+
+        // Dispatch an enter event
+        eventBus.dispatch('enter')
         
         gsap.killTweensOf(DOM.filler);
         gsap.killTweensOf(DOM.textInner);
@@ -70,7 +81,7 @@ export const MagneticButton: React.FC<Props> = ({children}) => {
 
         const tl = gsap.timeline()
         tl
-            .to(document.body, {duration: 0.2, backgroundColor: '#211c25'})
+            // .to(document.body, {duration: 0.2, backgroundColor: '#211c25'})
             .to(DOM.filler.current, {
                 duration: 0.5,
                 ease: 'Power3.easeOut',
@@ -90,9 +101,6 @@ export const MagneticButton: React.FC<Props> = ({children}) => {
         setHover(false)
 
         DOM?.el?.current?.classList?.remove('button--hover');
-        document.body.classList.remove('active');
-        
-        renderedStyles['scale'].current = 1;
 
         setRenderedStyles((prevState) => ({
             ...prevState,
@@ -108,7 +116,7 @@ export const MagneticButton: React.FC<Props> = ({children}) => {
         const tl = gsap.timeline()
         // console.log(tl)
         tl
-            .to(document.body, {duration: 0.2, backgroundColor: bodyColor})
+            // .to(document.body, {duration: 0.2, backgroundColor: bodyColor})
             .to(DOM.filler.current,{
                 duration: 0.4,
                 ease: 'Power3.easeOut',
@@ -133,13 +141,14 @@ export const MagneticButton: React.FC<Props> = ({children}) => {
         // console.log(mousepos, distanceMouseButton, distanceToTrigger)
         if ( distanceMouseButton < distanceToTrigger ) {
             if ( !hover ) {
+                console.log("Entering")
                 enter();
             }
             x = (mousepos.x + window.scrollX - (rect?.left + rect?.width/4))*.3;
             y = (mousepos.y + window.scrollY - (rect?.top + rect?.height/4))*.3;
         }
         else if ( hover ) {
-            // console.log("hover")
+            console.log("Leaving")
             leave();
         }
 
@@ -170,10 +179,9 @@ export const MagneticButton: React.FC<Props> = ({children}) => {
         }
         
         // Do a non-null check before assignment
-        if(DOM.el.current && DOM.text.current && DOM.deco.current){
-            DOM.el.current.style.transform = `translate3d(${renderedStyles['tx'].previous}px, ${renderedStyles['ty'].previous}px, 0)`;
-            DOM.text.current.style.transform = `translate3d(${-renderedStyles['tx'].previous*0.2}px, ${-renderedStyles['ty'].previous*0.2}px, 0)`;
-            DOM.deco.current.style.transform = `scale(${renderedStyles['scale'].previous})`;
+        if(DOM.el.current){
+            DOM.el.current.style.transform = `translate3d(${renderedStyles['tx'].previous}px, ${renderedStyles['ty'].previous}px, 0) scale(${renderedStyles['scale'].previous})`;
+            // DOM.el.current.style.transform = `scale(${renderedStyles['scale'].previous})`;
         }
 
         // requestAnimationFrame(() => render());
@@ -193,8 +201,18 @@ export const MagneticButton: React.FC<Props> = ({children}) => {
     }, [mousepos])
 
     
-    if(children){
-        return <button className="mg-button" ref={DOM.el}>{children}</button>
+    if(type === 'circular'){
+        return (
+            <button className="circular" ref={DOM.wrapperEl}>
+                <>
+                    <span>menu</span>
+                    <span className="menu-box" ref={DOM.el}>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </>
+            </button>
+        )
     }
 
     return (

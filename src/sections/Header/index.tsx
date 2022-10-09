@@ -6,7 +6,7 @@ import { MagneticButton } from "@components/MagneticButton"
 export const Header = () => {
     return (
         <>
-        <MagneticButton />
+        {/* <MagneticButton /> */}
         <header className={styles["header"]}>
             <div className={classnames(styles["header-content"], styles["container"])}>
                 <div className={styles["header-title"]}>
