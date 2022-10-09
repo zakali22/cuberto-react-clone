@@ -2,6 +2,7 @@ import {Link} from "react-router-dom"
 import {Sprite} from "@components/Sprite" 
 // import {ReactComponent as Logo} from "@images/icons/svgsprites.svg"
 import styles from "./Navbar.module.scss"
+import {MagneticButton} from "@components/MagneticButton"
 
 export const Navbar = () => {
     return (
@@ -18,13 +19,7 @@ export const Navbar = () => {
                         our showreel
                     </Link>
                     <div className={styles['navbar-toggle']}>
-                        <button>
-                            <span>menu</span>
-                            <span className={styles["navbar-menu-box"]}>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </button>
+                        <MagneticButton type="circular" />
                     </div>
                 </div>
             </div>

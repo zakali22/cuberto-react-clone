@@ -1,5 +1,33 @@
-/** Colors **/
-$black: #000;
+/** CSS Variables **/
+:root {
+    --black: #000;
+    --button-border-radius: 50%;
+    --button-bg: transparent;
+    --button-stroke: #ce1352;
+    --button-stroke-width: 1px;
+    --button-text: #ffffff;
+    --button-bg-hover: transparent;
+    --button-stroke-hover: #ce1352;
+    --button-stroke-width-hover: 1px;
+    --button-text-hover: #ffffff;
+    --cursor-stroke: #fff;
+    --cursor-fill: var(--black);
+    --cursor-stroke-width: 1px;
+    --color-text: var(--black);
+    --color-bg: #312b35;
+    --color-link: #89639e;
+    --color-link-hover: #ce1352;
+    --button-filler: #ce1352;
+}
+
+/** Mixins **/
+@mixin buttonHover {
+    outline: none;
+	border-width: var(--button-stroke-width-hover);
+	border-color: var(--button-stroke-hover);
+	color: var(--button-text-hover);
+	background: var(--button-bg-hover);
+}
 
 /** Sizes **/
 
@@ -56,15 +84,18 @@ p {
 }
 
 a {
-    color: $black;
+    color: var(--black);
     font-size: 20px;
     text-decoration: none;
 }
 
 button {
-    color: $black;
+    color: var(--black);
     font-size: 20px;
 
+    &.button--hover {
+        @include buttonHover()
+    }
 }
 
 
@@ -74,5 +105,58 @@ button {
 
     @media(min-width: 1400px){
         padding: 0 220px;
+    }
+}
+
+// Variations of buttons
+button.circular {
+    &.button--hover {
+        color: var(--color-text) !important;
+    }
+}
+
+.menu-box {
+    position: relative;
+    top: 0;
+    display: inline-block;
+    width: 25px;
+    height: 11px;
+
+    span {
+        position: relative;
+        display: block;
+        background: var(--black);
+        width: 100%;
+        height: 2px;
+
+        &:last-of-type {
+            top: 5px
+        }
+    }
+
+    &::before {
+        content: "";
+        background: black;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        top: -21px;
+        left: -13px;
+        opacity: 0;
+        transform: scale(0.1);
+        transform-origin: bottom;
+        transition: transform .4s ease-in-out;
+    }
+
+    &.button--hover {
+        &::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+        span {
+            background: var(--cursor-stroke);
+        }
     }
 }

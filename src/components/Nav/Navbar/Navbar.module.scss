@@ -38,25 +38,11 @@
                 span:first-of-type {
                     margin-right: 30px;
                 }
-            }
-        }
 
-        .navbar-menu-box {
-            position: relative;
-            top: -5px;
-            display: inline-block;
-            width: 25px;
-
-            span {
-                position: relative;
-                display: block;
-                background: shared.$black;
-                width: 100%;
-                height: 2px;
-
-                &:last-of-type {
-                    top: 5px
-                }
+                // &.button--hover {
+                //     @include shared.buttonHover();
+                //     color: var(--color-text) !important;
+                // }
             }
         }
     }
