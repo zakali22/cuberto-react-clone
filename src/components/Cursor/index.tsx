@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react"
 import { gsap } from 'gsap';
-import { lerp, getMousePos } from '@lib/utils';
-import eventBus from "@lib/EventBus"
+import { lerp, getMousePos } from '../../lib/utils';
+import eventBus from "../../lib/EventBus"
 import styles from "./Cursor.module.scss"
 
 export const Cursor = () => {

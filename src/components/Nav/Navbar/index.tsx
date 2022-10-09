@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react"
 import {Link} from "react-router-dom"
 import {gsap} from "gsap"
-import {Sprite} from "@components/Sprite" 
+import {Sprite} from "../../Sprite" 
 // import {ReactComponent as Logo} from "@images/icons/svgsprites.svg"
 import styles from "./Navbar.module.scss"
-import {MagneticButton} from "@components/MagneticButton"
+import {MagneticButton} from "../../MagneticButton"
 
 export const Navbar = () => {
 

@@ -2,8 +2,8 @@ import React, {useCallback, useEffect, useRef, useState} from "react"
 import classnames from "classnames"
 import styles from "./MagneticButton.module.scss"
 import {gsap} from 'gsap'
-import { lerp, getMousePos, calcWinsize, distance, getRandomFloat } from '@lib/utils';
-import eventBus from "@lib/EventBus"
+import { lerp, getMousePos, calcWinsize, distance, getRandomFloat } from '../../lib/utils';
+import eventBus from "../../lib/EventBus"
 import {CircularButton} from "./CircularButton"
 
 

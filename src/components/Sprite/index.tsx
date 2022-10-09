@@ -1,4 +1,4 @@
-import "@images/icons/svgsprites.svg"
+import "../../images/icons/svgsprites.svg"
 import SpriteSVG from "./SpriteSVG"
 import styles from "./Sprite.module.scss"
 
