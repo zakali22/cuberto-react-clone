@@ -1,0 +1,50 @@
+@use "../../../shared.scss";
+
+.navbar {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    width: calc(100% - 120px);
+
+    @media(min-width: 1200px){
+        top: 60px;
+        left: 60px;
+        right: 60px;
+    }
+
+    &-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &-right {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+            margin-right: 60px;
+        }
+
+        .navbar-toggle {
+            button {
+                background: none; 
+                border: none;
+                position: relative;
+                cursor: pointer;
+
+                span:first-of-type {
+                    margin-right: 30px;
+                }
+
+                // &.button--hover {
+                //     @include shared.buttonHover();
+                //     color: var(--color-text) !important;
+                // }
+            }
+        }
+    }
+    
+}

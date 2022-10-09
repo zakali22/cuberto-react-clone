@@ -1,0 +1,63 @@
+@use "../../shared.scss";
+
+.header {
+    height: 100vh;
+    &-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // padding-top: 90px;
+        height: 100%;
+    }
+
+    &-title {
+        h1 {
+            font-size: 19px;
+            font-weight: 400;
+            margin: 0;
+        }
+    }
+
+    /** Items **/
+    &-items {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        margin-left: -20px;
+    }
+
+    &-item {
+        min-height: 166px;
+        
+        a {
+            // color: shared.$black;
+            padding: 10px 20px;
+            font-size: 5rem;
+            line-height: 1;
+            white-space: nowrap;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; // Add layers
+            text-decoration: none;
+
+            @media(min-width: 1400px){
+                font-size: 100px;
+                font-size: 6.25rem;
+                line-height: 1.1;
+            }
+
+            @media(min-width: 1600px){
+                font-size: 130px;
+                font-size: 8.125rem;
+            }
+
+            @supports(-webkit-text-stroke: 1.2px #000){
+                text-shadow: none;
+                -webkit-text-fill-color: white;
+                -webkit-text-stroke: 1.2px black;
+            }
+
+            span {
+                // transform: translateY(100%);
+            }
+        }
+    }
+}

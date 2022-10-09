@@ -1,0 +1,182 @@
+/** CSS Variables **/
+:root {
+    --black: #000;
+    --button-border-radius: 50%;
+    --button-bg: transparent;
+    --button-stroke: #ce1352;
+    --button-stroke-width: 1px;
+    --button-text: #ffffff;
+    --button-bg-hover: transparent;
+    --button-stroke-hover: #ce1352;
+    --button-stroke-width-hover: 1px;
+    --button-text-hover: #ffffff;
+    --cursor-stroke: #fff;
+    --cursor-fill: var(--black);
+    --cursor-stroke-width: 1px;
+    --color-text: var(--black);
+    --color-bg: #312b35;
+    --color-link: #89639e;
+    --color-link-hover: #ce1352;
+    --button-filler: #ce1352;
+}
+
+/** Mixins **/
+@mixin buttonHover {
+    outline: none;
+	border-width: var(--button-stroke-width-hover);
+	border-color: var(--button-stroke-hover);
+	color: var(--button-text-hover);
+	background: var(--button-bg-hover);
+}
+
+/** Sizes **/
+
+/** Font face **/
+@font-face {
+    font-family: "Averta CY";
+    src: url("./fonts/AvertaCY-Light.woff2") format('woff2');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Averta CY";
+    src: url("./fonts/AvertaCY-Regular.woff2") format('woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Averta CY";
+    src: url("./fonts/AvertaCY-Semibold.woff2") format('woff2');
+    font-weight: 600;
+}
+
+/** Base styles **/
+html {
+}
+
+body {
+    margin: 0;
+    font-family: "Averta CY", sans-serif;
+    font-weight: 400;
+
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {}
+
+h1, .h1 {
+    font-size: 90px;
+    line-height: 1;
+}
+
+h2, .h2 {
+    font-size: 70px;
+    line-height: 1;
+}
+
+h3, .h3 {
+
+}
+
+h4, .h4 {
+
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+a {
+    color: var(--black);
+    font-size: 20px;
+    text-decoration: none;
+}
+
+button {
+    color: var(--black);
+    font-size: 20px;
+
+    &.button--hover {
+        @include buttonHover()
+    }
+}
+
+
+/** Common styles **/
+.container {
+    padding: 0 150px;
+
+    @media(min-width: 1400px){
+        padding: 0 220px;
+    }
+}
+
+.mask {
+    display: inline-block;
+    height: 0;
+    overflow: hidden;
+
+    & > * {
+        display: block;
+        transform: translateY(100%);
+    }
+
+    // &.slide-up {
+    //     & > * {
+    //         transform: translateY(0);
+    //     }
+    // }
+}
+
+// Variations of buttons
+button.circular {
+    &.button--hover {
+        color: var(--color-text) !important;
+    }
+}
+
+.menu-box {
+    position: relative;
+    top: 0;
+    display: inline-block;
+    width: 25px;
+    height: 11px;
+
+    span {
+        position: relative;
+        display: block;
+        background: var(--black);
+        width: 100%;
+        height: 2px;
+
+        &:last-of-type {
+            top: 5px
+        }
+    }
+
+    &::before {
+        content: "";
+        background: black;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        top: -21px;
+        left: -13px;
+        opacity: 0;
+        transform: scale(0.1);
+        transform-origin: -4px 50px;
+        transition: transform .4s ease-in-out;
+    }
+
+    &.button--hover {
+        &::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+        span {
+            background: var(--cursor-stroke);
+        }
+    }
+}
