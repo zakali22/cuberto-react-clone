@@ -51,6 +51,9 @@
 }
 
 /** Base styles **/
+html {
+}
+
 body {
     margin: 0;
     font-family: "Averta CY", sans-serif;
@@ -113,16 +116,16 @@ button {
     height: 100%;
     overflow: hidden;
 
-    & > * {
-        display: block;
-        transform: translateY(100%);
-    }
+    // & > * {
+    //     display: block;
+    //     transform: translateY(100%);
+    // }
 
-    &.slide-up {
-        & > * {
-            transform: translateY(0);
-        }
-    }
+    // &.slide-up {
+    //     & > * {
+    //         transform: translateY(0);
+    //     }
+    // }
 }
 
 // Variations of buttons
@@ -163,7 +166,7 @@ button.circular {
         left: -13px;
         opacity: 0;
         transform: scale(0.1);
-        transform-origin: bottom;
+        transform-origin: -4px 50px;
         transition: transform .4s ease-in-out;
     }
 
