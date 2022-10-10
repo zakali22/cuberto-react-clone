@@ -18,12 +18,12 @@ export const HeaderItem = React.forwardRef<any, Props>((props: Props, ref) => { 
 
     function cursorExpand(e: any){
         const target = e.target as HTMLElement
-        console.log(target.getAttribute('id'))
+        // console.log(target.getAttribute('id'))
         setHoverSectionEl(target.getAttribute('id'))
         if(hoverSectionEl === 'websites' || hoverSectionEl === 'apps' || hoverSectionEl === 'branding'){
             requestAnimationFrame(() => {
                 // console.log("Hovergin over red")
-                eventBus.dispatch('headerHoverEnter')
+                eventBus.dispatch('headerHoverEnter', hoverSectionEl)
             })
         }
     }

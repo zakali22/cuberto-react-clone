@@ -12,7 +12,7 @@
     }
 
     &-title {
-        z-index: 2;
+        z-index: -1;
         h1 {
             font-size: 19px;
             font-weight: 400;
@@ -37,7 +37,7 @@
             display: block;
             height: 100%;
             width: 100%;
-            background: red;
+            background: transparent;
             position: absolute;
             top: -30vh;
             left: 0;
