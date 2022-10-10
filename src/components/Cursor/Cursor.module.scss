@@ -9,6 +9,7 @@
 		pointer-events: none;
 		will-change: transform; // To smoothen the transform
 		// transition: transform .1s ease;
+		z-index: 1;
 	}
 	.cursor__inner {
         display: block;
