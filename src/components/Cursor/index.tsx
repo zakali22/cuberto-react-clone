@@ -38,12 +38,22 @@ export const Cursor = () => {
         DOM!.el!.current!.style!.opacity = 0;
         setBounds(DOM?.el?.current?.getBoundingClientRect())
         window.addEventListener('mousemove', onMouseMoveEv);
+        // window.addEventListener('mousemove', scaleCursor);
     }, [])
 
     
     useEffect(() => { // Whenever the mouse pos changes recalculate everything
         onMouseMoveEv()
     }, [mousepos])
+
+    // function scaleCursor(e: any){
+    //     const {movementX, movementY} = e
+    //     console.log(Math.abs(movementX+1.5), Math.abs(movementY+1.4))
+    //     gsap.to(
+    //         DOM.elInner.current, 
+    //         {scaleX: renderedStyles.scale.previous + Math.abs(movementX+1.4), scaleY: renderedStyles.scale.previous + Math.abs(movementY+1.4)}
+    //     )
+    // }
 
     function onMouseMoveEv(){
         // console.log("Moving mouse")
@@ -118,14 +128,13 @@ export const Cursor = () => {
             })
         }
 
-
-            setRenderedStyles((prevState) => ({
-                ...prevState, 
-                scale: {
-                    ...prevState.scale,
-                    current: 6
-                }
-            }))
+        setRenderedStyles((prevState) => ({
+            ...prevState, 
+            scale: {
+                ...prevState.scale,
+                current: 6
+            }
+        }))
     }
 
     function headerHoverLeave(e: any){
