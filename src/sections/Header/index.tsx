@@ -1,9 +1,9 @@
+import { useEffect, useRef } from "react"
 import styles from "./Header.module.scss"
 import classnames from "classnames"
 import { HeaderItem } from "./HeaderItem"
 import {gsap} from "gsap"
 import { CustomEase } from "gsap/CustomEase";
-import { useEffect, useRef } from "react"
 
 export const Header = () => {
     const DOM = {
@@ -34,9 +34,9 @@ export const Header = () => {
                     </span>
                 </div>
                 <div className={classnames(styles["header-items"], "links-title")}>
-                    <HeaderItem ref={DOM.headerLink} link="/" text="Websites"/>
-                    <HeaderItem ref={DOM.headerLink2} link="/" text="Apps"/>
-                    <HeaderItem ref={DOM.headerLink3} link="/" text="Branding"/>
+                    <HeaderItem ref={DOM.headerLink} link="/" text="Websites" id="websites"/>
+                    <HeaderItem ref={DOM.headerLink2} link="/" text="Apps" id="apps" />
+                    <HeaderItem ref={DOM.headerLink3} link="/" text="Branding" id="branding"/>
                 </div>
             </div>
         </header>

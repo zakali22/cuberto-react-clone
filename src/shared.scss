@@ -120,12 +120,6 @@ button {
         display: block;
         transform: translateY(100%);
     }
-
-    // &.slide-up {
-    //     & > * {
-    //         transform: translateY(0);
-    //     }
-    // }
 }
 
 // Variations of buttons
@@ -134,6 +128,7 @@ button.circular {
         color: var(--color-text) !important;
     }
 }
+
 
 .menu-box {
     position: relative;

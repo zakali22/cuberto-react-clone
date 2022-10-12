@@ -42,7 +42,7 @@ export const MagneticButton = ({children, classname, type}: Props) => {
         // size/position
         setRect(DOM?.wrapperEl?.current?.getBoundingClientRect())
         // the movement will take place when the distance from the mouse to the center of the button is lower than this value
-        setDistanceToTrigger(rect?.width*0.6) // Radius around the button when movement starts
+        setDistanceToTrigger(rect?.width*0.8) // Radius around the button when movement starts
         // console.log("calculateSizePosition")
     }, [DOM?.el, rect?.width])
 
@@ -141,14 +141,14 @@ export const MagneticButton = ({children, classname, type}: Props) => {
         // console.log(mousepos, distanceMouseButton, distanceToTrigger)
         if ( distanceMouseButton < distanceToTrigger ) {
             if ( !hover ) {
-                console.log("Entering")
+                // console.log("Entering")
                 enter();
             }
             x = (mousepos.x + window.scrollX - (rect?.left + rect?.width/4))*.3;
             y = (mousepos.y + window.scrollY - (rect?.top + rect?.height/4))*.3;
         }
         else if ( hover ) {
-            console.log("Leaving")
+            // console.log("Leaving")
             leave();
         }
 

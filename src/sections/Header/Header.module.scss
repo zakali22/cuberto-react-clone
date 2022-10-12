@@ -8,13 +8,17 @@
         justify-content: center;
         // padding-top: 90px;
         height: 100%;
+        position: relative;
     }
 
     &-title {
+        z-index: 2;
+        mix-blend-mode: multiply;
         h1 {
             font-size: 19px;
             font-weight: 400;
             margin: 0;
+            -webkit-text-fill-color: #000
         }
     }
 
@@ -24,10 +28,30 @@
         justify-content: flex-start;
         width: 100%;
         margin-left: -20px;
+        z-index: 2;
+        mix-blend-mode: difference;
+        background: transparent;
     }
-
+    
     &-item {
+        position: relative;
         min-height: 166px;
+        background-color: transparent;
+        // mix-blend-mode: difference;
+
+        .hover-area {
+            content: "";
+            display: block;
+            height: 100%;
+            width: 100%;
+            background: transparent;
+            position: absolute;
+            top: -30vh;
+            left: 0;
+            height: 69vh;
+            // z-index: -1;
+            cursor: pointer;
+        }
         
         a {
             // color: shared.$black;
@@ -37,6 +61,11 @@
             white-space: nowrap;
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; // Add layers
             text-decoration: none;
+            // z-index: 2;
+            display: block;
+            height: 100%;
+
+
 
             @media(min-width: 1400px){
                 font-size: 100px;
@@ -51,8 +80,16 @@
 
             @supports(-webkit-text-stroke: 1.2px #000){
                 text-shadow: none;
-                -webkit-text-fill-color: white;
+                color: transparent;
+                -webkit-text-fill-color: #fff;
                 -webkit-text-stroke: 1.2px black;
+
+                &:hover, &:focus {
+                    color: #000;
+                    -webkit-text-stroke: 1.2px black;
+                    z-index: 4;
+                    // -webkit-text-fill-color: #000;
+                }
             }
 
             span {
