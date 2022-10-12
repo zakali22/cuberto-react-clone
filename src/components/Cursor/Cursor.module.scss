@@ -40,7 +40,7 @@
 		transition: width .5s ease, height .5s ease; // transition width/height together
 		transform-origin: 50% 50%;
 		transform: translate(-50%,-50%);
-		will-change: width, height, transform, border;
+		will-change: width, height;
 		height: 300px;
 		width: 300px;
 	}

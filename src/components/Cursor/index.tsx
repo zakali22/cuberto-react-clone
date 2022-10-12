@@ -194,7 +194,7 @@ export const Cursor = () => {
         setHoverAreaEntered(true) 
         if(hoverAreaEntered){
             console.log("Entered the hover area")
-            gsap.to(DOM.elInner.current, {width: "300px", height: "300px", duration: 1, ease: "Power0.inOut"})
+            gsap.to(DOM.elInner.current, {width: "300px", height: "300px", duration: 1, ease: "Power2.inOut"})
             // DOM.el.current.style.width = '0px'
             // DOM.el.current.style.height = '0px'
 
@@ -229,7 +229,7 @@ export const Cursor = () => {
         
         if(!hoverAreaEntered){
             console.log("Left the hover area")
-            gsap.to(DOM.elInner.current, {width: "0px", height: "0px", duration: 1, ease: "Power0.inOut"})
+            gsap.to(DOM.elInner.current, {width: "10px", height: "10px", duration: 5, ease: "Power0.inOut"})
             // DOM.elInner.current.style.width = '0px'
             // DOM.elInner.current.style.height = '0px'
 
