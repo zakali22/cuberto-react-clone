@@ -141,14 +141,14 @@ export const MagneticButton = ({children, classname, type}: Props) => {
         // console.log(mousepos, distanceMouseButton, distanceToTrigger)
         if ( distanceMouseButton < distanceToTrigger ) {
             if ( !hover ) {
-                console.log("Entering")
+                // console.log("Entering")
                 enter();
             }
             x = (mousepos.x + window.scrollX - (rect?.left + rect?.width/4))*.3;
             y = (mousepos.y + window.scrollY - (rect?.top + rect?.height/4))*.3;
         }
         else if ( hover ) {
-            console.log("Leaving")
+            // console.log("Leaving")
             leave();
         }
 

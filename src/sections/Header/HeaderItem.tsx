@@ -22,7 +22,7 @@ export const HeaderItem = React.forwardRef<any, Props>((props: Props, ref) => { 
         setHoverSectionEl(target.getAttribute('id'))
         if(hoverSectionEl === 'websites' || hoverSectionEl === 'apps' || hoverSectionEl === 'branding'){
             requestAnimationFrame(() => {
-                // console.log("Hovergin over red")
+                console.log("Hovergin over red")
                 eventBus.dispatch('headerHoverEnter', hoverSectionEl)
             })
         }
