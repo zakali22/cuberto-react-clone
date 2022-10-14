@@ -75,10 +75,8 @@ export const Cursor = () => {
     useLayoutEffect(() => {
         set.x = gsap.quickSetter(DOM.el.current, "x", "px");
         set.y = gsap.quickSetter(DOM.el.current, "y", "px")
-        // set.r = gsap.quickSetter(DOM.elInner.current, "rotate", "deg")
         set.sx = gsap.quickSetter(DOM.elInner.current, "scaleX")
         set.sy = gsap.quickSetter(DOM.elInner.current, "scaleY")
-        // set.rt = gsap.quickSetter(DOM.elInner.current, "rotate", "deg");
     }, [])
 
     useEffect(() => {
@@ -90,15 +88,12 @@ export const Cursor = () => {
     // Start Animation loop
     const loop = useCallback(() => {
       // Calculate angle and scale based on velocity
-      var rotation = getAngle(vel.x, vel.y);
       var scale = getScale(vel.x, vel.y);
   
       set.x?.(pos.x);
       set.y?.(pos.y);
-    //   set.r?.(rotation);
       set.sx?.(1 + scale);
       set.sy?.(1 - scale);
-    //   set.rt?.(-rotation);
     }, []);
     
     // Run on Mouse Move
@@ -113,8 +108,8 @@ export const Cursor = () => {
         const my = e.movementY;
         const speed = 0.5
 
-        // eventBus.on('enter', enter)
-        // eventBus.on('leave', leave)
+        eventBus.on('enter', enter)
+        eventBus.on('leave', leave)
 
   
         // Animate Pos Object and calculate Vel Object Velocity
@@ -124,8 +119,8 @@ export const Cursor = () => {
           duration: speed,
           onUpdate: () => {
             if(pos.x && pos.y){
-                vel.x = x - pos.x;
-                vel.y = y - pos.y;
+                vel.x = (x - pos.x)/2;
+                vel.y = (y - pos.y)/2;
             }
           }
         });
@@ -143,42 +138,16 @@ export const Cursor = () => {
 
     useTicker(loop);
 
-    // function enter(e: any){
-    //     setRenderedStyles((prevState) => ({
-    //         ...prevState, 
-    //         scaleX: {
-    //             ...prevState.scaleX,
-    //             current: 4
-    //         },
-    //         scaleY: {
-    //             ...prevState.scaleY,
-    //             current: 4
-    //         },
-    //         opacity: {
-    //             ...prevState.opacity,
-    //             current: 0
-    //         }
-    //     }))
-    // }
+    function enter(e: any){
+        console.log("Entered mg button")
+        gsap.to(DOM.el.current, {scale: 0, duration: 1, ease: "Power0.inOut"})
+    }
 
     
-    // function leave(){
-    //     setRenderedStyles((prevState) => ({
-    //         ...prevState, 
-    //         scaleX: {
-    //             ...prevState.scaleX,
-    //             current: 1
-    //         },
-    //         scaleY: {
-    //             ...prevState.scaleY,
-    //             current: 1
-    //         },
-    //         opacity: {
-    //             ...prevState.opacity,
-    //             current: 1
-    //         }
-    //     }))
-    // }
+    function leave(){
+        console.log("Left mg button")
+        gsap.to(DOM.el.current, {scale: 1, duration: 1, ease: "Power0.inOut"})
+    }
 
 
     function headerHoverEnter(e: any){
@@ -193,29 +162,10 @@ export const Cursor = () => {
 
         setHoverAreaEntered(true) 
         if(hoverAreaEntered){
-            console.log("Entered the hover area")
+            // console.log("Entered the hover area")
             gsap.to(DOM.elInner.current, {width: "300px", height: "300px", duration: 1, ease: "Power2.inOut"})
-            // DOM.el.current.style.width = '0px'
-            // DOM.el.current.style.height = '0px'
-
-            // DOM.elInner.current.style.display = 'block'
-            // DOM.elInner.current.style.width = '300px'
-            // DOM.elInner.current.style.height = '300px'
             setHoverAreaEntered(false) 
         }
-        
-
-        // setRenderedStyles((prevState) => ({
-        //     ...prevState, 
-        //     scaleX: {
-        //         ...prevState.scaleX,
-        //         current: 6
-        //     },
-        //     scaleY: {
-        //         ...prevState.scaleY,
-        //         current: 6
-        //     }
-        // }))
     }
     
     function headerHoverLeave(e: any){
@@ -225,66 +175,17 @@ export const Cursor = () => {
             src: ""
         })
         
-        // gsap.to(DOM.elInner.current, {width: "20px", height: "20px", duration: 7, ease: "Power0.inOut"})
-        
         if(!hoverAreaEntered){
-            console.log("Left the hover area")
+            // console.log("Left the hover area")
             gsap.to(DOM.elInner.current, {width: "10px", height: "10px", duration: 5, ease: "Power0.inOut"})
-            // DOM.elInner.current.style.width = '0px'
-            // DOM.elInner.current.style.height = '0px'
-
-            // DOM.el.current.style.width = '10px'
-            // DOM.el.current.style.height = '10px'
-            // DOM.elInner.current.style.scale = 'none'
-
-            // DOM.elInner.current.style.width = '0px'
-            // DOM.elInner.current.style.height = '0px'
-
-            // setHoverAreaEntered(true)
         }
 
-
-        // DOM.elInner.current.style.background = '#000'
-        // setRenderedStyles((prevState) => ({
-        //     ...prevState, 
-        //     scaleX: {
-        //         ...prevState.scaleX,
-        //         current: 0.2
-        //     },
-        //     scaleY: {
-        //         ...prevState.scaleY,
-        //         current: 0.2
-        //     }
-        // }))
     }
 
     return (
         <div className={styles["cursor"]} ref={DOM.el}>
-            {/* <svg className={styles["cursor"]} width="25" height="25" viewBox="0 0 25 25" ref={DOM.el}>
-                <circle className={styles["cursor__inner"]} cx="12.5" cy="12.5" r="6.25" />
-            </svg> */}
             <div className={styles["cursor__inner"]} ref={DOM.elInner}>
                 <div className={styles["cursor-media"]}>
-                    {/* <img src="/images/icons/svgsprites.svg" alt="Logo" /> */}
-
-                    {/* {renderVideo.render && renderVideo.src === 'websites' && 
-                        <video preload={'auto'} muted={true} loop ref={DOM.videoEl} autoPlay>
-                            <source src={websitesHeader} ref={DOM.videoElSource} type="video/mp4" />
-                        </video>
-                    }
-
-                    {renderVideo.render && renderVideo.src === 'apps' && 
-                        <video preload={'auto'} muted={true} loop ref={DOM.videoEl} autoPlay>
-                            <source src={appsHeader} ref={DOM.videoElSource} type="video/mp4" />
-                        </video>
-                    }
-
-                    {renderVideo.render && renderVideo.src === 'branding' && 
-                        <video preload={'auto'} muted={true} loop ref={DOM.videoEl} autoPlay>
-                            <source src={brandingHeader} ref={DOM.videoElSource} type="video/mp4" />
-                        </video>
-                    } */}
-
                     {renderVideo.render && renderVideo.src && 
                         <video preload={'auto'} muted={true} loop ref={DOM.videoEl} autoPlay>
                             <source src={brandingHeader} ref={DOM.videoElSource} type="video/mp4" />
