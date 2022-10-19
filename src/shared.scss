@@ -18,6 +18,8 @@
     --color-link: #89639e;
     --color-link-hover: #ce1352;
     --button-filler: #ce1352;
+
+    --nav-height-desktop: 150px;
 }
 
 /** Mixins **/
@@ -104,9 +106,17 @@ button {
 
 /** Common styles **/
 .container {
-    padding: 0 150px;
+    padding: 0 30px;
+
+    @media(min-width: 768px){
+        padding: 0 100px;
+    }
 
     @media(min-width: 1400px){
+        padding: 0 150px;
+    }
+
+    @media(min-width: 1600px){
         padding: 0 220px;
     }
 }
@@ -119,6 +129,23 @@ button {
     & > * {
         display: block;
         transform: translateY(100%);
+        padding-bottom: 4px;
+    }
+
+    & > span {
+        &::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: #000;
+            position: absolute;
+            bottom: 4px;
+
+            @media(min-width: 1200px){
+                display: none;
+            }
+        }
     }
 }
 
