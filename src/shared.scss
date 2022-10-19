@@ -18,6 +18,7 @@
     --color-link: #89639e;
     --color-link-hover: #ce1352;
     --button-filler: #ce1352;
+    --light-grey: rgba(0,0,0,.3);
 
     --nav-height-desktop: 150px;
 }
@@ -60,7 +61,7 @@ body {
     margin: 0;
     font-family: "Averta CY", sans-serif;
     font-weight: 400;
-
+    overflow-x: hidden;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {}

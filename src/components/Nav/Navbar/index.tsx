@@ -5,6 +5,7 @@ import {Sprite} from "../../Sprite"
 // import {ReactComponent as Logo} from "@images/icons/svgsprites.svg"
 import styles from "./Navbar.module.scss"
 import {MagneticButton} from "../../MagneticButton"
+import {Menu} from "../Menu"
 
 export const Navbar = () => {
 
@@ -15,8 +16,8 @@ export const Navbar = () => {
     }, [])
 
     return (
-        <nav className={styles['navbar']} ref={nav}>
-            <div className={styles['navbar-wrapper']}>
+        <nav className={styles['navbar']}>
+            <div className={styles['navbar-wrapper']} ref={nav}>
                 <div className={styles['navbar-left']}>
                     <Link to="/">
                         <Sprite className="svg-logo"/>
@@ -32,6 +33,7 @@ export const Navbar = () => {
                     </div>
                 </div>
             </div>
+            <Menu />
         </nav>
     )
 }

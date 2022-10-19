@@ -1,0 +1,104 @@
+.navbar-menu {
+
+    &__overlay {
+        background: rgba(238,238,238,.7);
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+        pointer-events: auto;
+    }
+
+    &__content {
+        position: fixed;
+        top: 0;
+        height: 100%;
+        background: white;
+        right: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 0 30px 80px 80px;
+        display: flex;
+        flex-direction: column;
+
+        @media(min-width: 768px){
+            width: 680px;
+        }
+
+        @media(min-width: 1400px){
+            width: 780px;
+        }
+
+        &-wrapper {
+            display: flex;
+            flex: 1;
+            align-items: center;
+        }
+    }
+
+    .navbar-link {
+        &__item {
+            position: relative;
+            display: block;
+            padding: 12px 0;
+            line-height: 120%;
+            letter-spacing: .00464286em;
+            text-transform: capitalize;
+            text-decoration: none;
+
+            em {
+                display: block;
+                font-style: normal;
+                overflow: hidden;
+                position: relative;
+            }
+        }
+    }
+
+    &__links {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+
+        &-left {
+            flex: 1 1 40%;
+            
+            .navbar-link__item {
+                font-size: 16px;
+            }
+        }
+
+        &-right {
+            flex: 1 1 60%;
+
+            .navbar-link__item {
+                font-size: 38px;
+
+                @media(min-width: 360px){
+                    font-size: 42px;
+                }
+
+                @media(min-width: 767px){
+                    font-size: 56px;
+                }
+
+                @media(min-width: 1600px){
+                    font-size: 60px;
+                }
+            }
+        }
+    }
+
+    &__contact {
+        flex: 0 0 0;
+        padding-bottom: 30px;
+    }
+
+    &__title {
+        font-size: 14px;
+        color: var(--light-grey);
+    }
+}
