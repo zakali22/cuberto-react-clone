@@ -13,10 +13,10 @@ export const Layout: React.FC<Props> = ({children}) => {
             <main>
                 {children}
             </main>
-            <Cursor />
             <footer>
                 <h1>Footer</h1>
             </footer>
+            <Cursor />
         </>
     )
 }

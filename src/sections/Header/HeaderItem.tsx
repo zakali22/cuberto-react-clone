@@ -6,11 +6,14 @@ import eventBus from "../../lib/EventBus"
 interface Props {
     link: string
     text: string
+    textAlt?: string
     id: string
 }
 
 export const HeaderItem = React.forwardRef<any, Props>((props: Props, ref) => { // Define the forwardRef types <refType, PropType>
     const [hoverSectionEl, setHoverSectionEl] = useState<any>()    
+    const mq = window.matchMedia('(max-width: 1199px)')
+    const [isCondensedLayout, setIsCondensedLayout] = useState(mq.matches)
 
     const DOM = {
         headerArea: useRef<HTMLElement|any>(null)
@@ -28,6 +31,14 @@ export const HeaderItem = React.forwardRef<any, Props>((props: Props, ref) => { 
         }
     }
     
+    useEffect(() => {
+        mq.addEventListener('change', (e) => {
+            setIsCondensedLayout(e.matches)
+        })
+
+
+        console.log("CHanged media query ", isCondensedLayout)
+    }, [isCondensedLayout]) // Re-render the component everytime isCondensedLayout changes
     
     
     useEffect(() => {
@@ -47,7 +58,9 @@ export const HeaderItem = React.forwardRef<any, Props>((props: Props, ref) => { 
             <div className={styles["hover-area"]}  id={props.id}></div>
             <Link to={props.link} id={props.id}>
                 <span className="mask mask2" id={props.id}>
-                    <span ref={ref} id={props.id}>{props.text}</span>
+                    <span ref={ref} id={props.id}>
+                        {isCondensedLayout && props.textAlt ? props.textAlt : props.text}
+                    </span>
                 </span>
             </Link>
         </div>
