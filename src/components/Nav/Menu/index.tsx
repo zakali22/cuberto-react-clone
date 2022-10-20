@@ -1,12 +1,17 @@
 import {Link} from "react-router-dom"
 import styles from "./Menu.module.scss"
+import classnames from "classnames"
 
-export const Menu = () => {
+interface Props {
+    isMenuOpened: boolean
+}
+
+export const Menu = ({isMenuOpened}: Props) => {
     const links = ["Linkedin", "Behance", "Dribble", "Instagram", "Youtube", "Twitter", "Github"]
     const links2 = ["Work", "About", "Services", "Tutorials", "Contact"]
 
     return (
-        <div className={styles["navbar-menu"]}>
+        <div className={`${styles["navbar-menu"]} ${isMenuOpened ? styles["menu-open"] : ''}`}>
             <div className={styles["navbar-menu__overlay"]}></div>
             <div className={styles["navbar-menu__content"]}>
                 <div className={styles["navbar-menu__content-wrapper"]}>

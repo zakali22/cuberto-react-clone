@@ -155,6 +155,20 @@ button.circular {
     &.button--hover {
         color: var(--color-text) !important;
     }
+
+    &.active {
+        & > span:first-of-type {
+            opacity: 0;
+        }
+
+        .menu-box {
+            & > span:first-of-type {
+            }
+
+            & > span:last-of-type {
+            }
+        }
+    }
 }
 
 
@@ -172,8 +186,12 @@ button.circular {
         width: 100%;
         height: 2px;
 
+        &:first-of-type {
+
+        }
+
         &:last-of-type {
-            top: 5px
+            transform: translateY(5px);
         }
     }
 
