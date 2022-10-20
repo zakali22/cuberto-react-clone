@@ -10,10 +10,12 @@ import {CircularButton} from "./CircularButton"
 interface Props {
     children?: React.ReactElement,
     classname?: string,
-    type?: string
+    type?: string,
+    isMenuOpened?: boolean,
+    handleMenuOpen?: () => void
 }
 
-export const MagneticButton = ({children, classname, type}: Props) => {
+export const MagneticButton = ({children, classname, type, isMenuOpened, handleMenuOpen}: Props) => {
     const [renderedStyles, setRenderedStyles] = useState({
         tx: {previous: 0, current: 0, amt: 0.1},
         ty: {previous: 0, current: 0, amt: 0.1},
@@ -203,9 +205,9 @@ export const MagneticButton = ({children, classname, type}: Props) => {
     
     if(type === 'circular'){
         return (
-            <button className="circular" ref={DOM.wrapperEl}>
+            <button className={classnames("circular", {active: isMenuOpened})} ref={DOM.wrapperEl} onClick={handleMenuOpen}>
                 <>
-                    <span>menu</span>
+                    <span style={{opacity: isMenuOpened ? 0 : 1}}>menu</span>
                     <span className="menu-box" ref={DOM.el}>
                         <span></span>
                         <span></span>
