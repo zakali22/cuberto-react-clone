@@ -1,0 +1,88 @@
+.t-link__item {
+    position: relative;
+    display: block;
+    padding: 12px 0;
+    line-height: 120%;
+    letter-spacing: .00464286em;
+    text-transform: capitalize;
+    text-decoration: none;
+
+    &.sm {
+        font-size: 16px;
+    }
+
+    &.md {
+        font-size: 20px;
+
+        @media(min-width: 767px){
+            font-size: 25px;
+        }
+
+        @media(min-width: 1200px){
+            font-size: 30px;
+        }
+    }
+
+    &.lg {
+        font-size: 38px;
+
+        @media(min-width: 360px){
+            font-size: 42px;
+        }
+
+        @media(min-width: 767px){
+            font-size: 56px;
+        }
+
+        @media(min-width: 1600px){
+            font-size: 60px;
+        }
+    }
+
+    em {
+        display: block;
+        font-style: normal;
+        overflow: hidden;
+        position: relative;
+
+        span {
+            display: inline-block;
+            color: transparent; // to avoid duplicate
+            transition: transform 1.2s cubic-bezier(.19,1,.22,1); // Moves faster than the pseudo elements
+
+            &::after, &::before {
+                content: attr(data-text); // Text from attribute
+                display: block;
+                position: absolute;
+                color: var(--black);
+                transition: transform 2s cubic-bezier(.19,1,.22,1) // Moves slower the main text
+            }
+
+            &::before { // Sits on top of main text
+                top: 0;
+                transform-origin: right bottom;
+            }
+
+            &::after { // Sits below the main text
+                top: 100%;
+                transform-origin: left top;
+                transform: skewY(5deg) // Starts out skewed
+            }
+        }
+    }
+
+    &:hover, &:focus {
+        em span {
+            transform: translateY(-100%); // Move up the main text and with it all the pseudo elements
+
+            &::before {
+                transform: skewY(7deg); // Skews
+            }
+
+            &::after {
+                transform: skewY(0deg);
+            }
+            
+        }
+    }
+}

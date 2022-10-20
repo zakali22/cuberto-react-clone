@@ -28,11 +28,24 @@ const distance = (x1,y1,x2,y2) => {
 // Generate a random float.
 const getRandomFloat = (min, max) => (Math.random() * (max - min) + min).toFixed(2);
 
+// Function for Mouse Move Scale Change
+function getScale(diffX, diffY) {
+    const distance = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+    return Math.min(distance / 800, 0.25);
+  }
+  
+  // Function For Mouse Movement Angle in Degrees
+  function getAngle(diffX, diffY) {
+    return (Math.atan2(diffY, diffX) * 180) / Math.PI;
+  }
+
 export { 
     map, 
     lerp, 
     calcWinsize, 
     getMousePos,
     distance,
-    getRandomFloat
+    getRandomFloat,
+    getScale,
+    getAngle
 };

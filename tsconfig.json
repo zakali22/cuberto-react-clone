@@ -20,23 +20,6 @@
       "isolatedModules": true,
       "noEmit": true,
       "jsx": "react-jsx",
-      "paths": {
-        "@components/*": [
-          "components/*"
-        ],
-        "@sections/*": [
-          "sections/*"
-        ],
-        "@pages/*": [
-          "pages/*"
-        ],
-        "@images/*": [
-          "images/*"
-        ],
-        "@lib/*": [
-          "lib/*"
-        ]
-      }
     },
     "include": [
       "src",

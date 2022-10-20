@@ -18,6 +18,9 @@
     --color-link: #89639e;
     --color-link-hover: #ce1352;
     --button-filler: #ce1352;
+    --light-grey: rgba(0,0,0,.3);
+
+    --nav-height-desktop: 150px;
 }
 
 /** Mixins **/
@@ -58,7 +61,7 @@ body {
     margin: 0;
     font-family: "Averta CY", sans-serif;
     font-weight: 400;
-
+    overflow-x: hidden;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {}
@@ -104,9 +107,17 @@ button {
 
 /** Common styles **/
 .container {
-    padding: 0 150px;
+    padding: 0 30px;
+
+    @media(min-width: 768px){
+        padding: 0 100px;
+    }
 
     @media(min-width: 1400px){
+        padding: 0 150px;
+    }
+
+    @media(min-width: 1600px){
         padding: 0 220px;
     }
 }
@@ -119,13 +130,24 @@ button {
     & > * {
         display: block;
         transform: translateY(100%);
+        padding-bottom: 4px;
     }
 
-    // &.slide-up {
-    //     & > * {
-    //         transform: translateY(0);
-    //     }
-    // }
+    & > span {
+        &::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: #000;
+            position: absolute;
+            bottom: 4px;
+
+            @media(min-width: 1200px){
+                display: none;
+            }
+        }
+    }
 }
 
 // Variations of buttons
@@ -133,7 +155,22 @@ button.circular {
     &.button--hover {
         color: var(--color-text) !important;
     }
+
+    &.active {
+        & > span:first-of-type {
+            opacity: 0;
+        }
+
+        .menu-box {
+            & > span:first-of-type {
+            }
+
+            & > span:last-of-type {
+            }
+        }
+    }
 }
+
 
 .menu-box {
     position: relative;
@@ -149,8 +186,12 @@ button.circular {
         width: 100%;
         height: 2px;
 
+        &:first-of-type {
+
+        }
+
         &:last-of-type {
-            top: 5px
+            transform: translateY(5px);
         }
     }
 
