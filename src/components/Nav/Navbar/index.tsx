@@ -60,7 +60,7 @@ export const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <Menu isMenuOpened={isMenuOpened} />
+            <Menu isMenuOpened={isMenuOpened} handleMenuOpen={handleMenuOpen} />
         </nav>
     )
 }
