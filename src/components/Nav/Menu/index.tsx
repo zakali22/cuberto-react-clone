@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom"
+import { TransitionLink } from "components/Links"
 import styles from "./Menu.module.scss"
 import classnames from "classnames"
 
@@ -20,15 +21,7 @@ export const Menu = ({isMenuOpened}: Props) => {
                             <p className={styles["navbar-menu__title"]}>Socials</p>
                             <div className={styles["navbar-menu__links-list"]}>
                                 {links.map(link => (
-                                    <div className={styles["navbar-link"]}>
-                                        <Link to={link.toLowerCase()} className={styles["navbar-link__item"]}>
-                                            <em>
-                                                <span data-text={link}>
-                                                    {link}
-                                                </span>
-                                            </em>
-                                        </Link>
-                                    </div>
+                                    <TransitionLink link={link} size="sm"/>
                                 ))}
                             </div>
                         </div>
@@ -36,15 +29,7 @@ export const Menu = ({isMenuOpened}: Props) => {
                             <p className={styles["navbar-menu__title"]}>Menu</p>
                             <div className={styles["navbar-menu__links-list"]}>
                                 {links2.map(link => (
-                                    <div className={styles["navbar-link"]}>
-                                        <Link to={link.toLowerCase()} className={styles["navbar-link__item"]}>
-                                            <em>
-                                                <span data-text={link}>
-                                                    {link}
-                                                </span>
-                                            </em>
-                                        </Link>
-                                    </div>
+                                    <TransitionLink link={link} size="lg" />
                                 ))}
                             </div>
                         </div>
