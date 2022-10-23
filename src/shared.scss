@@ -109,6 +109,7 @@ button {
 /** Common styles **/
 .container {
     padding: 0 30px;
+    height: 100%;
 
     @media(min-width: 768px){
         padding: 0 100px;
@@ -133,7 +134,7 @@ button {
         &--left, &--right, &--center {
             & > * {
                 max-width: 100%;
-                
+
                 @media(min-width: 768px){
                     max-width: 70%;
                 }
