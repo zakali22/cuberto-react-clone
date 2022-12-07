@@ -19,8 +19,8 @@
     --color-link-hover: #ce1352;
     --button-filler: #ce1352;
     --light-grey: rgba(0,0,0,.3);
-
     --nav-height-desktop: 150px;
+    --column1400Width: 57px;
 }
 
 /** Mixins **/
@@ -62,6 +62,8 @@ body {
     font-family: "Averta CY", sans-serif;
     font-weight: 400;
     overflow-x: hidden;
+    height: 100%;
+    min-height: 100vh;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {}
@@ -81,7 +83,8 @@ h3, .h3 {
 }
 
 h4, .h4 {
-
+    font-size: 32px;
+    line-height: 1.5;
 }
 
 p {
@@ -108,9 +111,13 @@ button {
 /** Common styles **/
 .container {
     padding: 0 30px;
+    height: 100%;
 
     @media(min-width: 768px){
         padding: 0 100px;
+    }
+
+    @media(min-width: 1200px){
     }
 
     @media(min-width: 1400px){
@@ -119,6 +126,63 @@ button {
 
     @media(min-width: 1600px){
         padding: 0 220px;
+    } 
+
+    &.container {
+        &.container--fullwidth {
+            width: 100%;
+        }  
+
+        &--left, &--right, &--center {
+            & > * {
+                max-width: 100%;
+
+                @media(min-width: 768px){
+                    max-width: 70%;
+                }
+
+            }
+        }
+
+        &--left {
+            & > * {
+                margin-left: 0;
+                margin-right: auto;
+            }
+        }
+
+        &--right {
+            & > * {
+                margin-left: auto;
+                margin-right: 0;
+            }
+        }
+
+        &--center {
+            & > * {
+                margin: 0 auto;
+            }
+        }
+
+        &--row, &--column {
+            display: flex;
+        }
+
+        &--row {
+            flex-direction: row;
+            
+            &.container--row-mobile-column {
+                flex-direction: column;
+
+                @media(min-width: 992px){
+                    flex-direction: row;
+                }
+            }
+        }
+
+        &--column {
+            flex-direction: column;
+        }
     }
 }
 
@@ -220,4 +284,14 @@ button.circular {
             background: var(--cursor-stroke);
         }
     }
+}
+
+
+/* Viewport wrapper - Needed for Smoothscroll - DEBUG*/
+#viewport {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
