@@ -1,22 +1,41 @@
-import React from "react"
+import React, { useState, useEffect, useRef } from "react"
 import {Navbar} from "../Nav"
 import {Cursor} from "../Cursor"
+import Scrollbar from 'smooth-scrollbar';
 
 interface Props {
     children: React.ReactElement
 }
 
 export const Layout: React.FC<Props> = ({children}) => {
+    const viewportRef = useRef<HTMLElement|any>()
+    const [offset, setOffset] = useState<number>()
+    let bodyScrollBar = useRef<Scrollbar>()
+
+    useEffect(() => { /** DEBUG: Smoothscroll + custom cursor */
+        bodyScrollBar.current = Scrollbar.init(viewportRef.current, {damping: 0.06});
+        bodyScrollBar.current.track.xAxis.element.remove();
+    }, [])
+
+    useEffect(() => {
+        bodyScrollBar?.current?.addListener(({offset}: any) => {
+            setOffset(offset.y)
+        })
+        console.log(offset)
+    }, [])
+
     return (
         <>
             <Navbar />
-            <main>
-                {children}
-            </main>
-            <footer>
-                <h1>Footer</h1>
-            </footer>
-            <Cursor />
+            <div id="viewport" ref={viewportRef}> {/** Only the scrollable area should be smooth scrolled - move nav and cursor outside */}
+                <main>
+                    {children}
+                </main>
+                <footer>
+                    <h1>Footer</h1>
+                </footer>
+            </div>
+            <Cursor  />  
         </>
     )
 }

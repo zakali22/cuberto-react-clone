@@ -62,6 +62,8 @@ body {
     font-family: "Averta CY", sans-serif;
     font-weight: 400;
     overflow-x: hidden;
+    height: 100%;
+    min-height: 100vh;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {}
@@ -282,4 +284,14 @@ button.circular {
             background: var(--cursor-stroke);
         }
     }
+}
+
+
+/* Viewport wrapper - Needed for Smoothscroll - DEBUG*/
+#viewport {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
