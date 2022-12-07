@@ -19,42 +19,42 @@ export const HeaderItem = React.forwardRef<any, Props>((props: Props, ref) => { 
         headerArea: useRef<HTMLElement|any>(null)
     }
 
-    function cursorExpand(e: any){
-        const target = e.target as HTMLElement
-        // console.log(target.getAttribute('id'))
-        setHoverSectionEl(target.getAttribute('id'))
-        if(hoverSectionEl === 'websites' || hoverSectionEl === 'apps' || hoverSectionEl === 'branding'){
-            requestAnimationFrame(() => {
-                console.log("Hovergin over red")
-                eventBus.dispatch('headerHoverEnter', hoverSectionEl)
-            })
-        }
-    }
+    // function cursorExpand(e: any){
+    //     const target = e.target as HTMLElement
+    //     // console.log(target.getAttribute('id'))
+    //     setHoverSectionEl(target.getAttribute('id'))
+    //     if(hoverSectionEl === 'websites' || hoverSectionEl === 'apps' || hoverSectionEl === 'branding'){
+    //         requestAnimationFrame(() => {
+    //             console.log("Hovergin over red")
+    //             eventBus.dispatch('headerHoverEnter', hoverSectionEl)
+    //         })
+    //     }
+    // }
     
-    useEffect(() => {
-        mq.addEventListener('change', (e) => {
-            setIsCondensedLayout(e.matches)
-        })
+    // useEffect(() => {
+    //     mq.addEventListener('change', (e) => {
+    //         setIsCondensedLayout(e.matches)
+    //     })
 
 
-        console.log("CHanged media query ", isCondensedLayout)
-    }, [isCondensedLayout]) // Re-render the component everytime isCondensedLayout changes
+    //     console.log("CHanged media query ", isCondensedLayout)
+    // }, [isCondensedLayout]) // Re-render the component everytime isCondensedLayout changes
     
     
-    useEffect(() => {
-        let hoverArea = DOM?.headerArea?.current
-        hoverArea.addEventListener('mousemove', cursorExpand)
-        hoverArea.addEventListener('mouseleave', () => {
-            requestAnimationFrame(() => {
-                eventBus.dispatch('headerHoverLeave')
-            })
-        })
-    }, [hoverSectionEl])
+    // useEffect(() => {
+    //     let hoverArea = DOM?.headerArea?.current
+    //     hoverArea.addEventListener('mousemove', cursorExpand)
+    //     hoverArea.addEventListener('mouseleave', () => {
+    //         requestAnimationFrame(() => {
+    //             eventBus.dispatch('headerHoverLeave')
+    //         })
+    //     })
+    // }, [hoverSectionEl])
 
     
 
     return (
-        <div className={styles["header-item"]} ref={DOM.headerArea}>
+        <div className={styles["header-item"]} ref={DOM.headerArea} id="headerItem" data-hover-id={props.id}>
             <div className={styles["hover-area"]}  id={props.id}></div>
             <Link to={props.link} id={props.id}>
                 <span className="mask mask2" id={props.id}>
