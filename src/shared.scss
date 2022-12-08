@@ -19,6 +19,7 @@
     --color-link-hover: #ce1352;
     --button-filler: #ce1352;
     --light-grey: rgba(0,0,0,.3);
+    --light-grey-100: #6f6f6f;
     --nav-height-desktop: 150px;
     --column1400Width: 57px;
 }
@@ -107,8 +108,18 @@ button {
     }
 }
 
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 /** Common styles **/
+section {
+    padding-top: 170px;
+}
+
 .container {
     padding: 0 30px;
     height: 100%;
@@ -130,7 +141,12 @@ button {
 
     &.container {
         &.container--fullwidth {
-            width: 100%;
+            // width: 100%;
+
+            & > * {
+                max-width: 100%;
+                width: 100%;
+            }
         }  
 
         &--left, &--right, &--center {
