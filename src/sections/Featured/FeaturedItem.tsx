@@ -1,3 +1,4 @@
+import React from "react"
 import { Link } from "react-router-dom"
 import {FeaturedProject} from "../../data/types"
 
@@ -5,9 +6,9 @@ type FeaturedItemProps = {
     data: FeaturedProject
 }
 
-export const FeaturedItem = ({data}: FeaturedItemProps) => {    
+export const FeaturedItem = React.forwardRef<HTMLDivElement, FeaturedItemProps>(({data}: FeaturedItemProps, ref) => {    
     return (
-        <div className="featured-item">
+        <div className="featured-item" ref={ref}>
             <div className="featured-item__left">
                 <div className="featured-item__content">
                     <div className="featured-item__heading">
@@ -32,4 +33,4 @@ export const FeaturedItem = ({data}: FeaturedItemProps) => {
             </div>
         </div>
     )
-}
+})
