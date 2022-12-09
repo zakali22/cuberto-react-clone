@@ -17,16 +17,20 @@ export const Layout: React.FC<Props> = ({children}) => {
         bodyScrollBar.current = Scrollbar.init(viewportRef.current, {damping: 0.06});
         bodyScrollBar.current.track.xAxis.element.remove();
 
-        ScrollTrigger.scrollerProxy(document.body, {
+        ScrollTrigger.scrollerProxy(viewportRef.current, {
             scrollTop(value) {
-              if (arguments.length && bodyScrollBar.current) {
-                bodyScrollBar!.current!.scrollTop = value;
+              if (arguments.length) {
+                bodyScrollBar!.current!.scrollTop = value!;
               }
-              return bodyScrollBar?.current?.scrollTop;
+              return bodyScrollBar!.current!.scrollTop;
             }
         });
         
         bodyScrollBar.current.addListener(ScrollTrigger.update);
+
+        ScrollTrigger.defaults({
+          scroller: viewportRef.current
+        });
         
     }, [])
 

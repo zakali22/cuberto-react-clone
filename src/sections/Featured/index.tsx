@@ -1,4 +1,4 @@
-import {createRef, useEffect, useRef} from "react"
+import {createRef, useEffect, useState, useRef} from "react"
 import featuredProjects from "../../data/featuredProjects.json"
 import {FeaturedItem} from "./FeaturedItem"
 import { Container } from "components/Container"
@@ -7,31 +7,69 @@ import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./featured.scss"
 
 export const FeaturedList = () => {
+    const [hasLoaded, setHasLoaded] = useState(false)
+    const featuredWrapperRef = useRef<HTMLElement>(null)
     const refArr = useRef([])
     refArr.current = featuredProjects.data.map((item, index) => refArr.current[index] ?? createRef())
+    
     gsap.registerPlugin(ScrollTrigger)
 
     useEffect(() => {
-        refArr.current.forEach((featuredItem: any) => {
-            if(featuredItem.current){
-                console.log(featuredItem.current)
-                ScrollTrigger.create({
-                    trigger: featuredItem.current,
-                    start: "top center",
-                    end: "bottom top", 
-                    // scrub: true,
-                    onEnter: ({progress, direction, isActive}) => {
-                        console.log("Entered")
-                        console.log(isActive)
-                    },
-                    markers: true
-                })
-            }
-        })
+        document.body.style.backgroundColor = '#fff'
+        setHasLoaded(true)
     }, [])
 
+
+    useEffect(() => {
+        if(hasLoaded){
+            refArr.current.forEach((featuredItem: any) => {
+                if(featuredItem.current){
+                    ScrollTrigger.create({
+                        trigger: featuredItem.current,
+                        start: "top center",
+                        end: "bottom center",
+                        onEnter: ({progress, direction, isActive}) => {
+                            gsap.to(document.body, {
+                                backgroundColor: featuredItem.current.dataset.color,
+                                duration: 1
+                            })
+                        },
+                        onEnterBack: ({progress, direction, isActive}) => {
+                            gsap.to(document.body, {
+                                backgroundColor: featuredItem.current.dataset.color,
+                                duration: 1
+                            })
+                        }
+                    })
+                }
+            })
+    
+    
+            ScrollTrigger.create({
+                trigger: featuredWrapperRef.current,
+                start: "top center",
+                end: "bottom center",
+                onLeave: ({progress, direction, isActive}) => {
+                    console.log("Leaving wrapper")
+                    gsap.to(document.body, {
+                        backgroundColor: '#fff',
+                        duration: 1
+                    })
+                },
+                onLeaveBack: ({progress, direction, isActive}) => {
+                    console.log("Leaving wrapper")
+                    gsap.to(document.body, {
+                        backgroundColor: '#fff',
+                        duration: 1
+                    })
+                }
+            })
+        }
+        
+    }, [hasLoaded])
+
     return (
-        <section className="featured">
+        <section className="featured" ref={featuredWrapperRef}>
             <Container direction="column" fullwidth={true}>
                 <div className="featured-title">
                     <h2>
