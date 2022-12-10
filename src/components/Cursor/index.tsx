@@ -1,19 +1,15 @@
-import React, {useEffect, useRef, useState, useCallback} from "react"
-import MouseFollower from "mouse-follower";
-import gsap from "gsap";
-import "./MouseFollowerStyling.scss"
+import React, {useEffect, useRef, useContext, useState, useCallback} from "react"
+import {CursorContext} from "../../lib/context/cursorContext"
 
+import "./MouseFollowerStyling.scss"
 import branding from "../../videos/brandingHeader.mp4"
 import apps from "../../videos/appsHeader.mp4"
 import websites from "../../videos/websitesHeader.mp4"
 
-MouseFollower.registerGSAP(gsap);
+
 
 export const Cursor = () => {
-    const [renderVideo, setRenderVideo] = useState({render: false, src: branding})
-    const [pos, setPos] = useState({x: 0, y: 0})
-    const [hoverAreaEntered, setHoverAreaEntered] = useState(false)
-    const cursor = useRef<any>(null)
+    const {cursor} = useContext(CursorContext)
 
     let DOM = {
         el: useRef<HTMLElement|any>(null),
@@ -28,14 +24,7 @@ export const Cursor = () => {
         websites
     }
 
-    useEffect(() => {
-        if(!cursor.current){ // Make sure to initialise once
-            cursor.current = new MouseFollower({
-                container: document.body,
-                speed: 0.3
-            });
-        }
-    }, [])
+
 
     useEffect(() => {
         const headerItemEl = document.querySelectorAll('#headerItem')
