@@ -1,12 +1,14 @@
-import {createRef, useEffect, useState, useRef} from "react"
+import {useContext, createRef, useEffect, useState, useRef} from "react"
 import featuredProjects from "../../data/featuredProjects.json"
 import {FeaturedItem} from "./FeaturedItem"
 import { Container } from "components/Container"
 import {gsap} from "gsap"
+import {CursorContext} from "../../lib/context/cursorContext"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./featured.scss"
 
 export const FeaturedList = () => {
+    const {cursor} = useContext(CursorContext)
     const [hasLoaded, setHasLoaded] = useState(false)
     const featuredWrapperRef = useRef<HTMLElement>(null)
     const refArr = useRef([])
@@ -33,12 +35,21 @@ export const FeaturedList = () => {
                                 backgroundColor: featuredItem.current.dataset.color,
                                 duration: 1
                             })
+
+                            featuredItem.current.querySelector('.featured-item__img')?.addEventListener('mouseenter', function(){
+                                cursor.current.setText("View case")
+                            })
+
+                            featuredItem.current.querySelector('.featured-item__img')?.addEventListener('mouseleave', function(){
+                                cursor.current.removeText()
+                            })
                         },
                         onEnterBack: ({progress, direction, isActive}) => {
                             gsap.to(document.body, {
                                 backgroundColor: featuredItem.current.dataset.color,
                                 duration: 1
                             })
+
                         }
                     })
                 }

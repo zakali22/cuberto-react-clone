@@ -3,6 +3,7 @@ import {Navbar} from "../Nav"
 import {Cursor} from "../Cursor"
 import Scrollbar from 'smooth-scrollbar';
 import {ScrollTrigger} from "gsap/ScrollTrigger"
+import CursorProvider from "../../lib/context/cursorContext"
 
 interface Props {
     children: React.ReactElement
@@ -42,17 +43,19 @@ export const Layout: React.FC<Props> = ({children}) => {
     }, [])
 
     return (
-        <>
-            <div id="viewport" ref={viewportRef}> {/** Only the scrollable area should be smooth scrolled - move cursor outside */}
-                <Navbar />
-                <main>
-                    {children}
-                </main>
-                <footer>
-                    <h1>Footer</h1>
-                </footer>
-            </div>
-            <Cursor  />  
-        </>
+        <CursorProvider>
+            <>
+                <div id="viewport" ref={viewportRef}> {/** Only the scrollable area should be smooth scrolled - move cursor outside */}
+                    <Navbar />
+                    <main>
+                        {children}
+                    </main>
+                    <footer>
+                        <h1>Footer</h1>
+                    </footer>
+                </div>
+                <Cursor  />  
+            </>
+        </CursorProvider>
     )
 }

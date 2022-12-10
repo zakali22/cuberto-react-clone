@@ -8,7 +8,7 @@ type FeaturedItemProps = {
 
 export const FeaturedItem = React.forwardRef<HTMLDivElement, FeaturedItemProps>(({data}: FeaturedItemProps, ref) => {    
     return (
-        <div className="featured-item" ref={ref} data-color={data.color}>
+        <div className="featured-item" ref={ref} data-color={data.color} data-cursor={data.project.toLowerCase()}>
             <div className="featured-item__left">
                 <div className="featured-item__content">
                     <div className="featured-item__heading">
