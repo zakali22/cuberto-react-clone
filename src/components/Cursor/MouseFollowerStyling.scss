@@ -1,6 +1,13 @@
 $mf-color-base:#000 !default;
 $mf-color-text:#fff !default;
 
+$featuredProjects: (
+    sleepest: #aa37bb,
+    riyadh: #495db5,
+    ferrumpipe: #4ebb94,
+    ulesson: #ff6b46
+);
+
 .mf-cursor {
     $root:&;
 
@@ -29,6 +36,14 @@ $mf-color-text:#fff !default;
         border-radius:50%;
 
         transition:transform 0.25s ease-in-out, opacity 0.1s;
+    }
+
+    @each $name, $value in $featuredProjects {
+        &.#{$name}{
+            &:before {
+                background: $value
+            }
+        }
     }
 
     &.-media {
@@ -157,6 +172,12 @@ $mf-color-text:#fff !default;
     &.-media-lg {
         .mf-cursor-media {
             transform: scale(1.5);
+        }
+    }
+
+    &.-mf-cursor-md {
+        &:before {
+            transform: scale(1.3);
         }
     }
 }
