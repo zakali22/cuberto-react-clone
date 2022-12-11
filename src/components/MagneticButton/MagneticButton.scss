@@ -1,0 +1,138 @@
+.button {
+	min-width: 170px;
+	height: 52px;
+	padding: 0 40px;
+	background: transparent;
+	border-radius: 60px;
+	position: relative;
+	overflow: hidden;
+
+	@media(min-width: 1200px){
+		height: 62px;
+	}
+
+	.button-title {
+		display: flex;
+		align-items: center;
+		font-weight: 600;
+		text-align: center;
+
+		font-size: 14px;
+		font-style: normal;
+		overflow: hidden;
+		position: relative;
+		z-index: 2;
+
+		@media(min-width: 1200px){
+			font-size: 16px;
+		}
+	}
+
+	&:has(> .button-ripple) .button-title > span {
+		display: inline-block;
+		color: transparent; // to avoid duplicate
+		transition: transform 1s cubic-bezier(.19,1,.22,1); // Moves faster than the pseudo elements
+
+		&::after, &::before {
+			content: attr(data-text); // Text from attribute
+			display: block;
+			position: absolute;
+			color: var(--black);
+			transition: transform 1.5s cubic-bezier(.19,1,.22,1) // Moves slower the main text
+		}
+
+		&::before { // Sits on top of main text
+			top: 0;
+			transform-origin: right bottom;
+		}
+
+		&::after { // Sits below the main text
+			top: 100%;
+			transform-origin: left top;
+			transform: skewY(5deg) // Starts out skewed
+		}
+	}
+
+	// Overlay
+	.button-ripple {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 58px;
+		position: absolute;
+		z-index: 1;
+		background: black;
+		border-radius: 50%;
+		top: 0;
+		left: 0;
+		transform: translateY(100%); // Initial/End state
+		transition: transform 1s cubic-bezier(.19,1,.22,1);
+		z-index: 1;
+	}
+
+	&:has(> .button-ripple):hover, &:has(> .button-ripple):focus {
+		.button-title span {
+			transform: translateY(-100%); // Move up the main text and with it all the pseudo elements
+
+			&::after {
+				color: var(--white);
+			}
+	
+			&::before {
+				transform: skewY(7deg); // Skews
+			}
+	
+			&::after {
+				transform: skewY(0deg);
+			}
+			
+		}
+
+		// Overlay
+		.button-ripple {
+			transform: translateY(0%);
+			border-radius: 0;
+			animation: button-ripple .5s cubic-bezier(.4,0,0,1); // Restart position from top otherwise it will come from below
+		}
+	}
+
+	@keyframes button-ripple { //
+		0% {
+			border-radius: 100%;
+			transform: translateY(-100%)
+		}
+
+		100% {
+			border-radius: 0%;
+			transform: translateY(0%);
+		}
+	}
+}
+
+
+/** Link button styling **/
+.button.button--link {
+	border: none;
+	
+	.button-title {
+		position: relative;
+		overflow: initial; // Reset overflow
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: -7px;
+			width: 100%;
+			height: 1px;
+			background-color: var(--black);
+			transition: transform 1s cubic-bezier(.19,1,.22,1) 
+		}
+	}
+
+	&:hover {
+		.button-title::after {
+			transform: scaleX(0);
+		}
+	}
+}
