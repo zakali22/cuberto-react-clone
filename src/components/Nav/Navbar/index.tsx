@@ -4,7 +4,7 @@ import {gsap} from "gsap"
 import {Sprite} from "../../Sprite" 
 // import {ReactComponent as Logo} from "@images/icons/svgsprites.svg"
 import styles from "./Navbar.module.scss"
-import {MagneticButton} from "../../MagneticButton"
+import {CircularButton} from "../../MagneticButton"
 import {Menu} from "../Menu"
 
 export const Navbar = () => {
@@ -56,7 +56,7 @@ export const Navbar = () => {
                         our showreel
                     </Link>
                     <div className={styles['navbar-toggle']}>
-                        <MagneticButton type="circular" isMenuOpened={isMenuOpened} handleMenuOpen={handleMenuOpen}/>
+                        <CircularButton isMenuOpened={isMenuOpened} handleMenuOpen={handleMenuOpen}/>
                     </div>
                 </div>
             </div>

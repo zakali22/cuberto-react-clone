@@ -6,6 +6,7 @@ import {gsap} from "gsap"
 import {CursorContext} from "../../lib/context/cursorContext"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./featured.scss"
+import { Button } from "components/MagneticButton"
 
 export const FeaturedList = () => {
     const {cursor} = useContext(CursorContext)
@@ -94,6 +95,9 @@ export const FeaturedList = () => {
                             <FeaturedItem data={item} ref={refArr.current[index]} />
                         ))
                     }
+                </div>
+                <div className="featured-more more-wrapper">
+                    <Button text="View all projects" customColor="" type="ripple" isMagnetic/>
                 </div>
             </Container>
         </section>
