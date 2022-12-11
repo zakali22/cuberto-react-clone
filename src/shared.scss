@@ -1,6 +1,7 @@
 /** CSS Variables **/
 :root {
     --black: #000;
+    --white: #fff;
     --button-border-radius: 50%;
     --button-bg: transparent;
     --button-stroke: #ce1352;
@@ -310,4 +311,17 @@ button.circular {
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+
+/* More wrapper to center buttons */
+.more-wrapper {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media(min-width: 768px){
+        padding-top: 80px
+    }
 }
