@@ -3,12 +3,13 @@ import styles from "./TransitionLink.module.scss"
 
 interface Props {
     link: string,
-    size?: "sm" | "md" | "lg"
+    size?: "sm" | "md" | "lg",
+    darkmode?: boolean
 }
 
-export const TransitionLink = ({link, size = "md"}: Props) => {
+export const TransitionLink = ({link, size = "md", darkmode = false}: Props) => {
     return (
-        <Link to={link.toLowerCase()} className={`${styles["t-link__item"]} ${styles[size]}`}>
+        <Link to={link.toLowerCase()} className={`${styles["t-link__item"]} ${styles[size]} ${darkmode ? styles["t-link__item--dark"] :  ''}`}>
             <em>
                 <span data-text={link}>
                     {link}

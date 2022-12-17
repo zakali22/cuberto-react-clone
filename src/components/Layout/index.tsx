@@ -4,6 +4,7 @@ import {Cursor} from "../Cursor"
 import Scrollbar from 'smooth-scrollbar';
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import CursorProvider from "../../lib/context/cursorContext"
+import {Footer} from "../../sections/Footer"
 
 interface Props {
     children: React.ReactElement
@@ -50,9 +51,7 @@ export const Layout: React.FC<Props> = ({children}) => {
                     <main>
                         {children}
                     </main>
-                    <footer>
-                        <h1>Footer</h1>
-                    </footer>
+                    <Footer />
                 </div>
                 <Cursor  />  
             </>
