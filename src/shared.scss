@@ -120,7 +120,19 @@ img {
 
 /** Common styles **/
 section {
-    padding-top: 170px;
+    padding-bottom: 60px;
+    
+    @media(min-width: 768px){
+        padding-bottom: 90px;
+    }
+
+    @media(min-width: 992px){
+        padding-bottom: 120px;
+    }
+
+    @media(min-width: 1200px){
+        padding-bottom: 170px; 
+    }
 }
 
 .container {
