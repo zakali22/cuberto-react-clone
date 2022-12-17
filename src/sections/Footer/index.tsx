@@ -1,13 +1,53 @@
-import {useContext} from "react"
+import {useState, useContext, useRef, useEffect} from "react"
 import { Container } from "components/Container"
 import { TransitionLink } from "components/Links"
 import { Button } from "components/MagneticButton/Button"
 import {CursorContext} from "../../lib/context/cursorContext"
+import {gsap} from "gsap"
+import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./footer.scss"
 
 export const Footer = () => {
     const {cursor} = useContext(CursorContext)
+    const footerRef = useRef(null), footerContentRef = useRef(null)
+    const [triggerPoints, setTriggerPoints] = useState("top top")
     const links = ["Linkedin", "Behance", "Dribble", "Instagram", "Youtube", "Twitter"]
+
+
+    useEffect(() => {
+        updateEndTrigger()
+        if(footerRef.current){
+            gsap.set(footerContentRef.current, {yPercent: -70})
+
+            gsap.to(footerContentRef.current, {
+                yPercent: 0,
+                duration: 1.3,
+                ease: "Power0.in",
+                scrollTrigger: {
+                    trigger: footerRef.current,
+                    start: "top bottom",
+                    end: triggerPoints,
+                    scrub: true,
+                    markers: true,
+                }
+            })
+        }
+
+        window.addEventListener('resize', function(){
+            updateEndTrigger()
+        })
+
+    }, [])
+    
+    function updateEndTrigger(){
+        if(window.matchMedia("(min-width: 768px)").matches){
+            console.log("Above 768px")
+            setTriggerPoints("top top")
+        } else {
+            console.log("Below 768px")
+            setTriggerPoints("top 30%")
+        }
+    }
 
     function handleCursorInvert(isInverted: boolean){
         if(isInverted){
@@ -26,9 +66,9 @@ export const Footer = () => {
     }
 
     return (
-        <footer className="footer" onMouseEnter={() => handleCursorInvert(true)} onMouseLeave={() => handleCursorInvert(false)}>
+        <footer className="footer" onMouseEnter={() => handleCursorInvert(true)} onMouseLeave={() => handleCursorInvert(false)} ref={footerRef}>
             <Container direction="column" fullwidth>
-                <div className="footer-content">
+                <div className="footer-content" ref={footerContentRef}>
                     <div className="footer-content__top">
                         <div className="footer-content__cta">
                             <h2>Have an idea?</h2>

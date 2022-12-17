@@ -1,13 +1,26 @@
 .footer {
-    height: 100vh;
+    height: 60vh;
     background: var(--black);
     color: var(--white);
     box-sizing: border-box;
+    overflow: hidden;
 
     display: flex;
     flex-direction: column;
     padding-top: 60px;
     padding-bottom: 60px;
+
+    @media(min-width: 992px){
+        height: 70vh;
+    }
+
+    @media(min-width: 1200px){
+        height: 90vh;
+    }
+
+    @media(min-width: 1400px){
+        height: 100vh;
+    }
 
     .button {
         padding: 0;
@@ -40,6 +53,13 @@
         &__bottom {
             display: flex;
             justify-content: space-between;
+            flex-direction: column;
+            padding-top: 50px;
+
+            @media(min-width: 768px){
+                flex-direction: row;
+                padding-top: 0;
+            }
 
             &-left {
                 flex: 1 0 40%;
@@ -47,7 +67,11 @@
             &-right {
                 flex: 1 0 60%;
                 box-sizing: border-box;
-                padding-left: 40px;
+                padding-left: 0;
+
+                @media(min-width: 768px){
+                    padding-left: 40px;
+                }
             }
 
             &-links {
@@ -64,8 +88,12 @@
         }
 
         &__cta {
-            font-size: 5.41667vw;
+            font-size: 40px;
             font-weight: 100;
+            
+            @media(min-width: 768px){
+                font-size: 5.41667vw;
+            }
 
             h2, button, .button-title {
                 font-size: inherit;
@@ -78,8 +106,11 @@
             }
             
             .button {
-                height: 100px;
+                height: 70px;
 
+                @media(min-width: 768px){
+                    height: 100px;
+                }
             }
         }
     }
