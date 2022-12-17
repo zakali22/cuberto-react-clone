@@ -136,3 +136,9 @@
 		}
 	}
 }
+
+
+/** Dark mode **/
+.button.button--link .button-title::after {
+	background: var(--white)
+}

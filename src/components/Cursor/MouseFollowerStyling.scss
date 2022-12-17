@@ -175,9 +175,16 @@ $featuredProjects: (
         }
     }
 
+    // Sizes
     &.-mf-cursor-md {
         &:before {
             transform: scale(1.3);
+        }
+    }
+
+    &.-mf-cursor-lg {
+        &:before {
+            transform: scale(1.9);
         }
     }
 }

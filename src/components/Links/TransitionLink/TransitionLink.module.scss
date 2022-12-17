@@ -13,14 +13,6 @@
 
     &.md {
         font-size: 20px;
-
-        @media(min-width: 767px){
-            font-size: 25px;
-        }
-
-        @media(min-width: 1200px){
-            font-size: 30px;
-        }
     }
 
     &.lg {
@@ -83,6 +75,15 @@
                 transform: skewY(0deg);
             }
             
+        }
+    }
+
+    /** Dark mode **/
+    &.t-link__item--dark {
+        em span {
+            &::before, &::after {
+                color: var(--white)
+            }
         }
     }
 }
