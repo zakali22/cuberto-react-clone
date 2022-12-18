@@ -8,11 +8,7 @@ import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./featured.scss"
 import { Button } from "components/MagneticButton"
 
-type Props = {
-    slideIn?: boolean
-}
-
-export const FeaturedList = ({slideIn}: Props) => {
+export const FeaturedList = () => {
     const {cursor} = useContext(CursorContext)
     const [hasLoaded, setHasLoaded] = useState(false)
     const featuredWrapperRef = useRef<HTMLElement>(null)
@@ -85,7 +81,7 @@ export const FeaturedList = ({slideIn}: Props) => {
     }, [hasLoaded])
 
     return (
-        <section className={`${slideIn ? 'slide-in' : ''} featured`} ref={featuredWrapperRef}>
+        <section className="featured" ref={featuredWrapperRef}>
             <Container direction="column" fullwidth={true}>
                 <div className="featured-title">
                     <h2>
@@ -96,7 +92,7 @@ export const FeaturedList = ({slideIn}: Props) => {
                 <div className="featured-list">
                     {
                         featuredProjects.data.map((item, index) => (
-                            <FeaturedItem slideIn data={item} ref={refArr.current[index]} />
+                            <FeaturedItem data={item} ref={refArr.current[index]} />
                         ))
                     }
                 </div>
