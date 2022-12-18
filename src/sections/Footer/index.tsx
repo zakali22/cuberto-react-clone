@@ -20,6 +20,9 @@ export const Footer = () => {
         updateEndTrigger()
         gsap.set(footerContentRef.current, {yPercent: -70})
 
+        console.log(footerContentRef.current)
+        console.log(footerRef.current)
+
         gsap.to(footerContentRef.current, {
             yPercent: 0,
             duration: 1.3,
