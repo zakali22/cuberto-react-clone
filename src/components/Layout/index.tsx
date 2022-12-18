@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import {Navbar} from "../Nav"
 import {Cursor} from "../Cursor"
 import Scrollbar from 'smooth-scrollbar';
+import {gsap} from "gsap"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import CursorProvider from "../../lib/context/cursorContext"
 import {Footer} from "../../sections/Footer"
@@ -16,6 +17,7 @@ export const Layout: React.FC<Props> = ({children}) => {
     let bodyScrollBar = useRef<Scrollbar>()
 
     useEffect(() => { /** DEBUG: Smoothscroll + custom cursor */
+        gsap.registerPlugin(ScrollTrigger);
         bodyScrollBar.current = Scrollbar.init(viewportRef.current, {damping: 0.06});
         bodyScrollBar.current.track.xAxis.element.remove();
 

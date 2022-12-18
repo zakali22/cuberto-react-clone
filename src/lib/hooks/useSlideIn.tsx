@@ -4,6 +4,7 @@ import {ScrollTrigger} from "gsap/ScrollTrigger"
 
 export const useSlideIn = () => {
     useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
         const slideInEls = document.querySelectorAll('.slide-in')
         slideInEls.forEach((slideInEl) => {
             gsap.fromTo(slideInEl, { y: 50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.6, scrollTrigger: {
