@@ -5,13 +5,12 @@ type Props = {
     headingText?: string,
     paragraph?: string,
     link?: string,
-    linkText?: string,
-    slideIn?: boolean
+    linkText?: string
 }
 
-export const Text = ({headingText, paragraph, link, linkText, slideIn}: Props) => {
+export const Text = ({headingText, paragraph, link, linkText}: Props) => {
     return (
-        <div className={`${slideIn ? 'slide-in' : ''} intro-text`}>
+        <div className="intro-text">
             <Container align="left">
                 <div className="intro-text__content">
                     {headingText && <h2>{headingText}</h2>}
