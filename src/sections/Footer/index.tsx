@@ -17,22 +17,20 @@ export const Footer = () => {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
         updateEndTrigger()
-        if(footerRef.current){
-            gsap.set(footerContentRef.current, {yPercent: -70})
+        gsap.set(footerContentRef.current, {yPercent: -70})
 
-            gsap.to(footerContentRef.current, {
-                yPercent: 0,
-                duration: 1.3,
-                ease: "Power0.in",
-                scrollTrigger: {
-                    trigger: footerRef.current,
-                    start: "top bottom",
-                    end: triggerPoints,
-                    scrub: true,
-                    // markers: true,
-                }
-            })
-        }
+        gsap.to(footerContentRef.current, {
+            yPercent: 0,
+            duration: 1.3,
+            ease: "Power0.in",
+            scrollTrigger: {
+                trigger: footerRef.current,
+                start: "top bottom",
+                end: triggerPoints,
+                scrub: true,
+                // markers: true,
+            }
+        })
 
         window.addEventListener('resize', function(){
             updateEndTrigger()
