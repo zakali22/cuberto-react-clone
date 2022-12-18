@@ -15,6 +15,7 @@ export const Footer = () => {
 
 
     useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger)
         updateEndTrigger()
         if(footerRef.current){
             gsap.set(footerContentRef.current, {yPercent: -70})

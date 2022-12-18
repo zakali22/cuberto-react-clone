@@ -15,7 +15,7 @@ export const FeaturedList = () => {
     const refArr = useRef([])
     refArr.current = featuredProjects.data.map((item, index) => refArr.current[index] ?? createRef())
     
-    gsap.registerPlugin(ScrollTrigger)
+
 
     useEffect(() => {
         document.body.style.backgroundColor = '#fff'
@@ -24,6 +24,7 @@ export const FeaturedList = () => {
 
 
     useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger)
         if(hasLoaded){
             refArr.current.forEach((featuredItem: any) => {
                 if(featuredItem.current){
