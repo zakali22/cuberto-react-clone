@@ -7,7 +7,11 @@ import { CustomEase } from "gsap/CustomEase";
 import brandingHeader from "../../videos/brandingHeader.mp4"
 import { Container } from "components/Container"
 
-export const Header = () => {
+type Props = {
+    slideIn?: boolean
+}
+
+export const Header = ({slideIn}: Props) => {
     const isCondensedLayout = window.matchMedia('(max-width: 1199px)').matches
     const DOM = {
         header: useRef<HTMLElement|any>(null),
@@ -29,7 +33,7 @@ export const Header = () => {
 
 
     return (
-        <header className={styles["header"]}>
+        <header className={`${slideIn ? 'slide-in' : ''} ${styles["header"]}`}>
             <Container direction="row" mobileColumn>
                 <div className={styles["header-mobile-video"]}>
                     <div className={styles["header-mobile-video__wrapper"]}>
