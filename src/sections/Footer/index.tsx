@@ -1,4 +1,4 @@
-import {useState, useContext, useRef, useEffect} from "react"
+import {useState, useContext, useRef, useEffect, useLayoutEffect} from "react"
 import { Container } from "components/Container"
 import { TransitionLink } from "components/Links"
 import { Button } from "components/MagneticButton/Button"
@@ -15,16 +15,16 @@ export const Footer = () => {
     const links = ["Linkedin", "Behance", "Dribble", "Instagram", "Youtube", "Twitter"]
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
+        ScrollTrigger.refresh()
         console.log(ScrollTrigger)
     }, [])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         updateEndTrigger()
-        gsap.set(footerContentRef.current, {yPercent: -70})
 
-        gsap.to(footerContentRef.current, {
+        gsap.fromTo(footerContentRef.current, {yPercent: -70}, {
             yPercent: 0,
             duration: 1.3,
             ease: "Power0.in",
