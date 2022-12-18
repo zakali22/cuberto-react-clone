@@ -7,7 +7,6 @@ import {gsap} from "gsap"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./footer.scss"
 
-gsap.registerPlugin(ScrollTrigger)
 
 export const Footer = () => {
     const {cursor} = useContext(CursorContext)
@@ -29,7 +28,7 @@ export const Footer = () => {
                 trigger: footerRef.current,
                 start: "top bottom",
                 end: triggerPoints,
-                scrub: true,
+                scrub: true
                 // markers: true,
             }
         })
@@ -38,7 +37,7 @@ export const Footer = () => {
             updateEndTrigger()
         })
 
-    }, [])
+    }, [triggerPoints])
     
     function updateEndTrigger(){
         if(window.matchMedia("(min-width: 768px)").matches){
