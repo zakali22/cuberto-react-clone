@@ -28,7 +28,7 @@ export const Footer = () => {
                     start: "top bottom",
                     end: triggerPoints,
                     scrub: true,
-                    markers: true,
+                    // markers: true,
                 }
             })
         }
