@@ -7,6 +7,8 @@ import {gsap} from "gsap"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./footer.scss"
 
+gsap.registerPlugin(ScrollTrigger)
+
 export const Footer = () => {
     const {cursor} = useContext(CursorContext)
     const footerRef = useRef(null), footerContentRef = useRef(null)

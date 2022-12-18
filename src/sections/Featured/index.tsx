@@ -8,6 +8,8 @@ import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./featured.scss"
 import { Button } from "components/MagneticButton"
 
+gsap.registerPlugin(ScrollTrigger)
+
 export const FeaturedList = () => {
     const {cursor} = useContext(CursorContext)
     const [hasLoaded, setHasLoaded] = useState(false)

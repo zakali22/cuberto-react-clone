@@ -11,6 +11,8 @@ interface Props {
     children: React.ReactElement
 }
 
+gsap.registerPlugin(ScrollTrigger);
+
 export const Layout: React.FC<Props> = ({children}) => {
     const viewportRef = useRef<HTMLElement|any>()
     const [offset, setOffset] = useState<number>()
