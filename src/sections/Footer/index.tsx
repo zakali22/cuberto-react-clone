@@ -23,11 +23,7 @@ export const Footer = () => {
 
     useLayoutEffect(() => {
         updateEndTrigger()
-
-        gsap.fromTo(footerContentRef.current, {yPercent: -70}, {
-            yPercent: 0,
-            duration: 1.3,
-            ease: "Power0.in",
+        const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: footerRef.current,
                 start: "top bottom",
@@ -35,6 +31,12 @@ export const Footer = () => {
                 scrub: true
                 // markers: true,
             }
+        })
+
+        tl.fromTo(footerContentRef.current, {yPercent: -70}, {
+            yPercent: 0,
+            duration: 1.3,
+            ease: "Power0.in"
         })
 
         window.addEventListener('resize', function(){
