@@ -10,7 +10,7 @@ export const useFadeIn= () => {
                 trigger: slideInEl, 
                 start: "top center+=100",
                 // end: "bottom "
-                markers: true
+                // markers: true
             }})
         })
     }, [])

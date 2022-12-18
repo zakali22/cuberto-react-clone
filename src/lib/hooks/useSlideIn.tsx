@@ -10,7 +10,7 @@ export const useSlideIn = () => {
                 trigger: slideInEl, 
                 start: "top center+=50",
                 // end: "bottom "
-                markers: true
+                // markers: true
             }})
         })
     }, [])
