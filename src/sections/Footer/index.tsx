@@ -36,7 +36,8 @@ export const Footer = () => {
         tl.fromTo(footerContentRef.current, {yPercent: -70}, {
             yPercent: 0,
             duration: 1.3,
-            ease: "Power0.in"
+            ease: "Power0.in",
+            lazy: false
         })
 
         window.addEventListener('resize', function(){
