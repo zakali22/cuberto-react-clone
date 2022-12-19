@@ -27,11 +27,13 @@ export const Footer = () => {
             scrollTrigger: {
                 trigger: footerRef.current,
                 start: "top bottom",
-                end: triggerPoints,
+                end: "top top",
                 scrub: true
                 // markers: true,
             }
         })
+
+        console.log(tl)
 
         tl.fromTo(footerContentRef.current, {yPercent: -70}, {
             yPercent: 0,
