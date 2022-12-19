@@ -17,7 +17,7 @@ export const Footer = () => {
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
-        ScrollTrigger.refresh()
+        // ScrollTrigger.refresh()
         console.log(ScrollTrigger)
     }, [])
 
