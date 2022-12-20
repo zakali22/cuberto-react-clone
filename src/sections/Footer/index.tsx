@@ -37,7 +37,10 @@ export const Footer = () => {
                 start: "top bottom",
                 end: "top top",
                 scrub: true,
-                markers: true
+                markers: true,
+                onEnter: () => {
+                    console.log("Entered footer")
+                }
             }
         })
 
