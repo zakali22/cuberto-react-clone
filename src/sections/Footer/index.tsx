@@ -7,6 +7,7 @@ import {gsap} from "gsap"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./footer.scss"
 
+gsap.registerPlugin(ScrollTrigger)
 
 export const Footer = () => {
     const {cursor} = useContext(CursorContext)
@@ -16,14 +17,21 @@ export const Footer = () => {
 
 
     useLayoutEffect(() => {
-        gsap.registerPlugin(ScrollTrigger)
         // ScrollTrigger.refresh()
         console.log(ScrollTrigger)
     }, [])
 
     useLayoutEffect(() => {
         updateEndTrigger()
-        const tl = gsap.timeline({
+        const tl = gsap.timeline()
+
+        console.log(tl)
+
+        tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
+            yPercent: 0,
+            duration: 1.3,
+            ease: "Power0.in",
+            lazy: false,
             scrollTrigger: {
                 trigger: footerRef.current,
                 start: "top bottom",
@@ -31,15 +39,6 @@ export const Footer = () => {
                 scrub: true
                 // markers: true,
             }
-        })
-
-        console.log(tl)
-
-        tl.fromTo(footerContentRef.current, {yPercent: -70}, {
-            yPercent: 0,
-            duration: 1.3,
-            ease: "Power0.in",
-            lazy: false
         })
 
         window.addEventListener('resize', function(){
