@@ -24,7 +24,7 @@ export const Footer = () => {
     useLayoutEffect(() => {
         updateEndTrigger()
         const tl = gsap.timeline()
-        tl.set(footerContentRef.current, {yPercent: -70})
+        // tl.set(footerContentRef.current, {yPercent: -70})
 
         console.log(tl)
 
