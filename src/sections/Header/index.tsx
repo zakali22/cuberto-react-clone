@@ -3,7 +3,7 @@ import styles from "./Header.module.scss"
 import classnames from "classnames"
 import { HeaderItem } from "./HeaderItem"
 import {gsap} from "gsap"
-import { CustomEase } from "gsap/CustomEase";
+// import { CustomEase } from "gsap/CustomEase";
 import brandingHeader from "../../videos/brandingHeader.mp4"
 import { Container } from "components/Container"
 
@@ -17,7 +17,7 @@ export const Header = () => {
     }
 
     useEffect(() => {
-        gsap.registerPlugin(CustomEase)
+        // gsap.registerPlugin(CustomEase)
         const tl = gsap.timeline()
         tl
             .to(".title .mask", {height: "100%"})
