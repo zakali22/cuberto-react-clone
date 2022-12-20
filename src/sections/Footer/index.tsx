@@ -36,8 +36,8 @@ export const Footer = () => {
                 trigger: footerRef.current,
                 start: "top bottom",
                 end: "top top",
-                scrub: true
-                // markers: true,
+                scrub: true,
+                markers: true
             }
         })
 
