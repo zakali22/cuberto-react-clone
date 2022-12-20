@@ -7,7 +7,7 @@ import {gsap} from "gsap"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./footer.scss"
 
-gsap.registerPlugin(ScrollTrigger)
+
 
 export const Footer = () => {
     const {cursor} = useContext(CursorContext)
@@ -22,48 +22,38 @@ export const Footer = () => {
     }, [])
 
     useLayoutEffect(() => {
+        gsap.registerPlugin(ScrollTrigger)
         updateEndTrigger()
-        const tl = gsap.timeline()
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: footerRef.current,
+                start: "top bottom",
+                end: "top top",
+                scrub: true,
+                markers: true,
+                onEnter: () => {
+                    console.log("Entered footer")
+                }
+            }
+        })
         // tl.set(footerContentRef.current, {yPercent: -70})
 
         console.log(tl)
 
-        // tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
-        //     yPercent: 0,
-        //     duration: 1.3,
-        //     ease: "Power0.in",
-        //     lazy: false,
-        //     scrollTrigger: {
-        //         trigger: footerRef.current,
-        //         start: "top bottom",
-        //         end: "top top",
-        //         scrub: true,
-        //         markers: true,
-        //         onEnter: () => {
-        //             console.log("Entered footer")
-        //         }
-        //     }
-        // })
-
-        ScrollTrigger.create({
-            trigger: footerRef.current,
-            start: "top bottom",
-            end: "top top",
-            scrub: true,
-            markers: true,
-            onEnter: () => {
-                console.log("Entered footer")
-                tl.to(footerContentRef.current, {
-                    yPercent: 0,
-                    duration: 1.3,
-                    ease: "Power0.in"
-                })
-            }
+        tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
+            yPercent: 0,
+            duration: 1.3,
+            ease: "Power0.in",
+            lazy: false
         })
 
         window.addEventListener('resize', function(){
             updateEndTrigger()
         })
+
+        return () => {
+            tl?.scrollTrigger?.kill();
+        }
 
     }, [triggerPoints])
     
