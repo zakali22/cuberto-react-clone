@@ -52,6 +52,7 @@ export const Footer = () => {
             scrub: true,
             markers: true,
             onEnter: () => {
+                console.log("Entered footer")
                 tl.to(footerContentRef.current, {
                     yPercent: 0,
                     duration: 1.3,
