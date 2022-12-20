@@ -55,7 +55,7 @@ export const Footer = () => {
             tl?.scrollTrigger?.kill();
         }
 
-    }, [triggerPoints])
+    }, [])
     
     function updateEndTrigger(){
         if(window.matchMedia("(min-width: 768px)").matches){
