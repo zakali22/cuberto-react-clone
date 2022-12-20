@@ -24,23 +24,39 @@ export const Footer = () => {
     useLayoutEffect(() => {
         updateEndTrigger()
         const tl = gsap.timeline()
+        tl.set(footerContentRef.current, {yPercent: -70})
 
         console.log(tl)
 
-        tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
-            yPercent: 0,
-            duration: 1.3,
-            ease: "Power0.in",
-            lazy: false,
-            scrollTrigger: {
-                trigger: footerRef.current,
-                start: "top bottom",
-                end: "top top",
-                scrub: true,
-                markers: true,
-                onEnter: () => {
-                    console.log("Entered footer")
-                }
+        // tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
+        //     yPercent: 0,
+        //     duration: 1.3,
+        //     ease: "Power0.in",
+        //     lazy: false,
+        //     scrollTrigger: {
+        //         trigger: footerRef.current,
+        //         start: "top bottom",
+        //         end: "top top",
+        //         scrub: true,
+        //         markers: true,
+        //         onEnter: () => {
+        //             console.log("Entered footer")
+        //         }
+        //     }
+        // })
+
+        ScrollTrigger.create({
+            trigger: footerRef.current,
+            start: "top bottom",
+            end: "top top",
+            scrub: true,
+            markers: true,
+            onEnter: () => {
+                tl.to(footerContentRef.current, {
+                    yPercent: 0,
+                    duration: 1.3,
+                    ease: "Power0.in"
+                })
             }
         })
 
