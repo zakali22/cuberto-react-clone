@@ -10,6 +10,7 @@ import "./footer.scss"
 
 
 export const Footer = () => {
+    const [hasLoaded, setHasLoaded] = useState(false)
     const {cursor} = useContext(CursorContext)
     const footerRef = useRef(null), footerContentRef = useRef(null)
     const [triggerPoints, setTriggerPoints] = useState("top top")
@@ -17,45 +18,46 @@ export const Footer = () => {
 
 
     useLayoutEffect(() => {
-        // ScrollTrigger.refresh()
+        setHasLoaded(true)
         console.log(ScrollTrigger)
     }, [])
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
-        window.ScrollTrigger = ScrollTrigger
+        if(hasLoaded){
 
-        updateEndTrigger()
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".featured",
-                start: "bottom bottom",
-                end: "bottom top",
-                scrub: true,
-                markers: true,
-                onEnter: () => {
-                    console.log("Entered footer")
-                }
-            }
-        })
-        // tl.set(footerContentRef.current, {yPercent: -70})
-
-        console.log(tl)
-
-        tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
-            yPercent: 0,
-            duration: 1.3,
-            ease: "Power0.in",
-            lazy: false
-        })
-
-        window.addEventListener('resize', function(){
             updateEndTrigger()
-        })
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".featured",
+                    start: "bottom bottom",
+                    end: "bottom top",
+                    scrub: true,
+                    markers: true,
+                    onEnter: () => {
+                        console.log("Entered footer")
+                    }
+                }
+            })
+            // tl.set(footerContentRef.current, {yPercent: -70})
 
-        return () => {
-            tl?.scrollTrigger?.kill();
-        }
+            console.log(tl)
+
+            tl.fromTo(".footer-content", {yPercent: -70, lazy: false}, {
+                yPercent: 0,
+                duration: 1.3,
+                ease: "Power0.in",
+                lazy: false
+            })
+
+            window.addEventListener('resize', function(){
+                updateEndTrigger()
+            })
+            
+            return () => {
+                tl?.scrollTrigger?.kill();
+            }
+        } 
 
     }, [])
     
