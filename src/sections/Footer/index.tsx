@@ -28,9 +28,9 @@ export const Footer = () => {
         updateEndTrigger()
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: footerRef.current,
-                start: "top bottom",
-                end: "top top",
+                trigger: ".featured",
+                start: "bottom bottom",
+                end: "bottom top",
                 scrub: true,
                 markers: true,
                 onEnter: () => {
