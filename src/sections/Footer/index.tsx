@@ -24,13 +24,13 @@ export const Footer = () => {
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
-        if(hasLoaded){
+        // if(hasLoaded){
 
             updateEndTrigger()
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: ".featured",
-                    start: "bottom bottom",
+                    trigger: footerRef.current,
+                    start: "top bottom",
                     end: "bottom top",
                     scrub: true,
                     markers: true,
@@ -57,7 +57,7 @@ export const Footer = () => {
             return () => {
                 tl?.scrollTrigger?.kill();
             }
-        } 
+        // } 
 
     }, [])
     
