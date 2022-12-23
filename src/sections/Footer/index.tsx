@@ -17,28 +17,17 @@ export const Footer = () => {
     const links = ["Linkedin", "Behance", "Dribble", "Instagram", "Youtube", "Twitter"]
 
 
-    useLayoutEffect(() => {
-        setHasLoaded(true)
-        console.log(ScrollTrigger)
-    }, [])
+    // useLayoutEffect(() => {
+    //     setHasLoaded(true)
+    //     console.log(ScrollTrigger)
+    // }, [])
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
         // if(hasLoaded){
 
             updateEndTrigger()
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: footerRef.current,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true,
-                    markers: true,
-                    onEnter: () => {
-                        console.log("Entered footer")
-                    }
-                }
-            })
+            const tl = gsap.timeline()
             // tl.set(footerContentRef.current, {yPercent: -70})
 
             console.log(tl)
@@ -47,11 +36,21 @@ export const Footer = () => {
                 yPercent: 0,
                 duration: 1.3,
                 ease: "Power0.in",
-                lazy: false
+                lazy: false,
+                scrollTrigger: {
+                    trigger: footerRef.current,
+                    start: "top bottom",
+                    end: "top top",
+                    scrub: true,
+                    markers: true,
+                    onEnter: () => {
+                        console.log("Entered footer")
+                    }
+                }
             })
 
             window.addEventListener('resize', function(){
-                updateEndTrigger()
+                // updateEndTrigger()
             })
             
             return () => {
