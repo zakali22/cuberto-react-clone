@@ -43,7 +43,7 @@ export const Footer = () => {
 
             console.log(tl)
 
-            tl.fromTo(".footer-content", {yPercent: -70, lazy: false}, {
+            tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
                 yPercent: 0,
                 duration: 1.3,
                 ease: "Power0.in",
