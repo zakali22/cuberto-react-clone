@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react"
 import {Navbar} from "../Nav"
 import {Cursor} from "../Cursor"
 import Scrollbar from 'smooth-scrollbar';
@@ -11,13 +11,15 @@ interface Props {
     children: React.ReactElement
 }
 
+gsap.registerPlugin(ScrollTrigger);
+
 export const Layout: React.FC<Props> = ({children}) => {
     const viewportRef = useRef<HTMLElement|any>()
     const [offset, setOffset] = useState<number>()
     let bodyScrollBar = useRef<Scrollbar>()
 
-    useEffect(() => { /** DEBUG: Smoothscroll + custom cursor */
-        gsap.registerPlugin(ScrollTrigger);
+    useLayoutEffect(() => { /** DEBUG: Smoothscroll + custom cursor */
+        ScrollTrigger.refresh()
         bodyScrollBar.current = Scrollbar.init(viewportRef.current, {damping: 0.06});
         bodyScrollBar.current.track.xAxis.element.remove();
 
@@ -38,7 +40,7 @@ export const Layout: React.FC<Props> = ({children}) => {
         
     }, [])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         bodyScrollBar?.current?.addListener(({offset}: any) => {
             setOffset(offset.y)
         })

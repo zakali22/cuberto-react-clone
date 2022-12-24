@@ -7,45 +7,58 @@ import {gsap} from "gsap"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import "./footer.scss"
 
-gsap.registerPlugin(ScrollTrigger)
+
 
 export const Footer = () => {
+    const [hasLoaded, setHasLoaded] = useState(false)
     const {cursor} = useContext(CursorContext)
     const footerRef = useRef(null), footerContentRef = useRef(null)
     const [triggerPoints, setTriggerPoints] = useState("top top")
     const links = ["Linkedin", "Behance", "Dribble", "Instagram", "Youtube", "Twitter"]
 
 
-    useLayoutEffect(() => {
-        // ScrollTrigger.refresh()
-        console.log(ScrollTrigger)
-    }, [])
+    // useLayoutEffect(() => {
+    //     setHasLoaded(true)
+    //     console.log(ScrollTrigger)
+    // }, [])
 
     useLayoutEffect(() => {
-        updateEndTrigger()
-        const tl = gsap.timeline()
+        gsap.registerPlugin(ScrollTrigger)
+        // if(hasLoaded){
 
-        console.log(tl)
-
-        tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
-            yPercent: 0,
-            duration: 1.3,
-            ease: "Power0.in",
-            lazy: false,
-            scrollTrigger: {
-                trigger: footerRef.current,
-                start: "top bottom",
-                end: "top top",
-                scrub: true
-                // markers: true,
-            }
-        })
-
-        window.addEventListener('resize', function(){
             updateEndTrigger()
-        })
+            const tl = gsap.timeline()
+            // tl.set(footerContentRef.current, {yPercent: -70})
 
-    }, [triggerPoints])
+            console.log(tl)
+
+            tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
+                yPercent: 0,
+                duration: 1.3,
+                ease: "Power0.in",
+                lazy: false,
+                scrollTrigger: {
+                    trigger: footerRef.current,
+                    start: "top bottom",
+                    end: "top top",
+                    scrub: true,
+                    markers: true,
+                    onEnter: () => {
+                        console.log("Entered footer")
+                    }
+                }
+            })
+
+            window.addEventListener('resize', function(){
+                // updateEndTrigger()
+            })
+            
+            return () => {
+                tl?.scrollTrigger?.kill();
+            }
+        // } 
+
+    }, [])
     
     function updateEndTrigger(){
         if(window.matchMedia("(min-width: 768px)").matches){
