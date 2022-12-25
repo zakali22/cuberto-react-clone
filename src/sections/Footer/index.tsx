@@ -3,11 +3,11 @@ import { Container } from "components/Container"
 import { TransitionLink } from "components/Links"
 import { Button } from "components/MagneticButton/Button"
 import {CursorContext} from "../../lib/context/cursorContext"
-import {gsap} from "gsap"
-import {ScrollTrigger} from "gsap/ScrollTrigger"
+// import {gsap} from "gsap"
 import "./footer.scss"
 
-
+// const ScrollMagic = window.ScrollMagic;
+const gsap = window.gsap
 
 export const Footer = () => {
     const [hasLoaded, setHasLoaded] = useState(false)
@@ -16,47 +16,45 @@ export const Footer = () => {
     const [triggerPoints, setTriggerPoints] = useState("top top")
     const links = ["Linkedin", "Behance", "Dribble", "Instagram", "Youtube", "Twitter"]
 
-
-    // useLayoutEffect(() => {
-    //     setHasLoaded(true)
-    //     console.log(ScrollTrigger)
-    // }, [])
-
+    
     useLayoutEffect(() => {
-        gsap.registerPlugin(ScrollTrigger)
-        // if(hasLoaded){
+        
+        // console.log(ScrollMagic)
+        // const controller = new ScrollMagic.Controller()
+        // const scene = new ScrollMagic.Scene({
+        //     triggerElement: ".footer",
+        //     triggerHook: "onCenter",
+        //     offset: 10,
+        //     reverse: false
+        // }).setT
+    
+        updateEndTrigger()
 
-            updateEndTrigger()
-            const tl = gsap.timeline()
-            // tl.set(footerContentRef.current, {yPercent: -70})
-
-            console.log(tl)
-
-            tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
-                yPercent: 0,
-                duration: 1.3,
-                ease: "Power0.in",
-                lazy: false,
-                scrollTrigger: {
-                    trigger: footerRef.current,
-                    start: "top bottom",
-                    end: "top top",
-                    scrub: true,
-                    markers: true,
-                    onEnter: () => {
-                        console.log("Entered footer")
-                    }
+        const tl = gsap.timeline()
+        tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
+            yPercent: 0,
+            duration: 1.3,
+            ease: "Power0.in",
+            lazy: false,
+            scrollTrigger: {
+                trigger: footerRef.current,
+                start: "top bottom",
+                end: "top top",
+                scrub: true,
+                markers: true,
+                onEnter: () => {
+                    console.log("Entered footer")
                 }
-            })
-
-            window.addEventListener('resize', function(){
-                // updateEndTrigger()
-            })
-            
-            return () => {
-                tl?.scrollTrigger?.kill();
             }
-        // } 
+        })
+
+        window.addEventListener('resize', function(){
+            // updateEndTrigger()
+        })
+        
+        return () => {
+            tl?.scrollTrigger?.kill();
+        }
 
     }, [])
     
