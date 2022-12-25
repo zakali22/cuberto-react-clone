@@ -4,10 +4,8 @@ import { TransitionLink } from "components/Links"
 import { Button } from "components/MagneticButton/Button"
 import {CursorContext} from "../../lib/context/cursorContext"
 import {gsap} from "gsap"
-import {ScrollTrigger} from "gsap/ScrollTrigger"
+import ScrollMagic from "scrollmagic"
 import "./footer.scss"
-
-
 
 export const Footer = () => {
     const [hasLoaded, setHasLoaded] = useState(false)
@@ -16,47 +14,55 @@ export const Footer = () => {
     const [triggerPoints, setTriggerPoints] = useState("top top")
     const links = ["Linkedin", "Behance", "Dribble", "Instagram", "Youtube", "Twitter"]
 
-
-    // useLayoutEffect(() => {
-    //     setHasLoaded(true)
-    //     console.log(ScrollTrigger)
-    // }, [])
-
+    
     useLayoutEffect(() => {
-        gsap.registerPlugin(ScrollTrigger)
-        // if(hasLoaded){
+        
+        console.log(ScrollMagic)
+        const controller = new ScrollMagic.Controller()
+        updateEndTrigger()
 
-            updateEndTrigger()
-            const tl = gsap.timeline()
-            // tl.set(footerContentRef.current, {yPercent: -70})
+        const tl = gsap.timeline()
+        tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
+            yPercent: 0,
+            duration: 1.3,
+            ease: "Power0.in",
+            lazy: false
+            // scrollTrigger: {
+            //     trigger: footerRef.current,
+            //     start: "top bottom",
+            //     end: "top top",
+            //     scrub: true,
+            //     markers: true,
+            //     onEnter: () => {
+            //         console.log("Entered footer")
+            //     }
+            // }
+        })
+        tl.pause()
 
-            console.log(tl)
 
-            tl.fromTo(footerContentRef.current, {yPercent: -70, lazy: false}, {
-                yPercent: 0,
-                duration: 1.3,
-                ease: "Power0.in",
-                lazy: false,
-                scrollTrigger: {
-                    trigger: footerRef.current,
-                    start: "top bottom",
-                    end: "top top",
-                    scrub: true,
-                    markers: true,
-                    onEnter: () => {
-                        console.log("Entered footer")
-                    }
-                }
-            })
+        new ScrollMagic.Scene({
+            triggerElement: footerRef.current,
+            triggerHook: 0.9,
+            duration: "100%",
+            reverse: true
+        })
+        .addTo(controller)
+        .on("enter", function (e) {
+            console.log("Entering the footer")
+            tl.play()
+        })
+        .on("leave", function (e) {
+            tl.reverse()
+        })
 
-            window.addEventListener('resize', function(){
-                // updateEndTrigger()
-            })
-            
-            return () => {
-                tl?.scrollTrigger?.kill();
-            }
-        // } 
+        window.addEventListener('resize', function(){
+            // updateEndTrigger()
+        })
+        
+        return () => {
+            tl?.scrollTrigger?.kill();
+        }
 
     }, [])
     
