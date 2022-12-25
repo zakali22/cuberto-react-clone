@@ -3,11 +3,9 @@ import { Container } from "components/Container"
 import { TransitionLink } from "components/Links"
 import { Button } from "components/MagneticButton/Button"
 import {CursorContext} from "../../lib/context/cursorContext"
-// import {gsap} from "gsap"
+import {gsap} from "gsap"
+import ScrollMagic from "scrollmagic"
 import "./footer.scss"
-
-// const ScrollMagic = window.ScrollMagic;
-const gsap = window.gsap
 
 export const Footer = () => {
     const [hasLoaded, setHasLoaded] = useState(false)
@@ -19,15 +17,8 @@ export const Footer = () => {
     
     useLayoutEffect(() => {
         
-        // console.log(ScrollMagic)
-        // const controller = new ScrollMagic.Controller()
-        // const scene = new ScrollMagic.Scene({
-        //     triggerElement: ".footer",
-        //     triggerHook: "onCenter",
-        //     offset: 10,
-        //     reverse: false
-        // }).setT
-    
+        console.log(ScrollMagic)
+        const controller = new ScrollMagic.Controller()
         updateEndTrigger()
 
         const tl = gsap.timeline()
@@ -35,17 +26,34 @@ export const Footer = () => {
             yPercent: 0,
             duration: 1.3,
             ease: "Power0.in",
-            lazy: false,
-            scrollTrigger: {
-                trigger: footerRef.current,
-                start: "top bottom",
-                end: "top top",
-                scrub: true,
-                markers: true,
-                onEnter: () => {
-                    console.log("Entered footer")
-                }
-            }
+            lazy: false
+            // scrollTrigger: {
+            //     trigger: footerRef.current,
+            //     start: "top bottom",
+            //     end: "top top",
+            //     scrub: true,
+            //     markers: true,
+            //     onEnter: () => {
+            //         console.log("Entered footer")
+            //     }
+            // }
+        })
+        tl.pause()
+
+
+        new ScrollMagic.Scene({
+            triggerElement: footerRef.current,
+            triggerHook: 0.9,
+            duration: "100%",
+            reverse: true
+        })
+        .addTo(controller)
+        .on("enter", function (e) {
+            console.log("Entering the footer")
+            tl.play()
+        })
+        .on("leave", function (e) {
+            tl.reverse()
         })
 
         window.addEventListener('resize', function(){
