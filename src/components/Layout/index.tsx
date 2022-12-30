@@ -52,9 +52,7 @@ export const Layout: React.FC<Props> = ({children}) => {
             <>
                 <div id="viewport" ref={viewportRef}> {/** Only the scrollable area should be smooth scrolled - move cursor outside */}
                     <Navbar />
-                    <main>
-                        {children}
-                    </main>
+                    {children}
                     <Footer />
                 </div>
                 <Cursor  />  

@@ -26,35 +26,35 @@ export const Footer = () => {
             yPercent: 0,
             duration: 1.3,
             ease: "Power0.in",
-            lazy: false
-            // scrollTrigger: {
-            //     trigger: footerRef.current,
-            //     start: "top bottom",
-            //     end: "top top",
-            //     scrub: true,
-            //     markers: true,
-            //     onEnter: () => {
-            //         console.log("Entered footer")
-            //     }
-            // }
+            lazy: false,
+            scrollTrigger: {
+                trigger: footerRef.current,
+                start: "top bottom",
+                end: "top top",
+                scrub: true,
+                markers: true,
+                onEnter: () => {
+                    console.log("Entered footer")
+                }
+            }
         })
         tl.pause()
 
 
-        new ScrollMagic.Scene({
-            triggerElement: footerRef.current,
-            triggerHook: 0.9,
-            duration: "100%",
-            reverse: true
-        })
-        .addTo(controller)
-        .on("enter", function (e) {
-            console.log("Entering the footer")
-            tl.play()
-        })
-        .on("leave", function (e) {
-            tl.reverse()
-        })
+        // new ScrollMagic.Scene({
+        //     triggerElement: footerRef.current,
+        //     triggerHook: 0.9,
+        //     duration: "100%",
+        //     reverse: true
+        // })
+        // .addTo(controller)
+        // .on("enter", function (e) {
+        //     console.log("Entering the footer")
+        //     tl.play()
+        // })
+        // .on("leave", function (e) {
+        //     tl.reverse()
+        // })
 
         window.addEventListener('resize', function(){
             // updateEndTrigger()

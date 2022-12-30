@@ -65,20 +65,39 @@ export const FeaturedList = () => {
                 start: "top center",
                 end: "bottom center",
                 onLeave: ({progress, direction, isActive}) => {
-                    console.log("Leaving wrapper")
+                    // console.log("Leaving wrapper")
                     gsap.to(document.body, {
                         backgroundColor: '#fff',
                         duration: 1
                     })
                 },
                 onLeaveBack: ({progress, direction, isActive}) => {
-                    console.log("Leaving wrapper")
+                    // console.log("Leaving wrapper")
                     gsap.to(document.body, {
                         backgroundColor: '#fff',
                         duration: 1
                     })
                 }
             })
+
+            // const tl = gsap.timeline()
+            // ScrollTrigger.create({
+            //     trigger: ".footer",
+            //     start: "top bottom",
+            //     end: () => `top ${document.querySelector('.footer')?.clientHeight}px`,
+            //     pin: true,
+            //     pinSpacing: false,
+            //     markers: true
+            //     // onEnter: ({progress, direction, isActive}) => {
+            //     //     console.log("Entering footer")
+            //     //     tl.fromTo(".footer-content", {yPercent: -70, lazy: false}, {
+            //     //         yPercent: 0,
+            //     //         duration: 1.3,
+            //     //         ease: "Power0.in",
+            //     //         lazy: false
+            //     //     })
+            //     // }
+            // })
         }
         
     }, [hasLoaded])
