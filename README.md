@@ -1,1 +1,1 @@
-# Cuberto site in React - still WIP 👍
+# Cuberto site in React and Typescript
